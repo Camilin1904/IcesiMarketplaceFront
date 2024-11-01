@@ -24,20 +24,23 @@ export default function LoginPage(){
         }
     }
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full">
-            <h1>Login Page</h1>
-            <label className="mt4">Login</label>
-            <input type="text" className="w-80 h-8 px-2 border border-solid border-block rounded text-black" 
-            value={username} onChange={(e)=>setUsername(e.target.value)}/>
-            <label className="mt4">Password</label>
-            <input type="text" className="w-80 h-8 px-2 border border-solid border-block rounded text-black" 
-            value={password} onChange={(e)=>setPassword(e.target.value)}/>
+        <div className="flex flex-col items-center justify-center w-full h-full text-black">
+            <h1 className="mt-20 mb-20 text-black font-serif text-[75px] leading-[32px]">Ingreso</h1>
+            <div className="flex flex-col items-center justify-center w-full h-full text-white bg-[#A5B68D] max-w-96 h-96 rounded-lg">
+                <label className="mt4 mb-4">Correo</label>
+                <input type="text" className="w-80 h-8 px-2 border border-solid border-white rounded text-black rounded-xl bg-[#A5B68D] mb-4" 
+                value={username} onChange={(e)=>setUsername(e.target.value)}/>
+                <label className="mt4 mb-4">Contraseña</label>
+                <input type="text" className="w-80 h-8 px-2 border border-solid border-white rounded text-black rounded-xl bg-[#A5B68D] mb-4" 
+                value={password} onChange={(e)=>setPassword(e.target.value)}/>
 
 
-            <button className="mt-4 p-2 bg-gray-100 text-black rounded hover:bg-gray-600 transition-all"
-            onClick={onSubmit}>
-                Login
-            </button>
+                <button className="mt-4 p-2 bg-[#F5F1E6] text-black rounded-xl hover:bg-[#899a71] transition duration-150 ease-in-out hover:text-white hover:border-[#F5F1E6] w-28"
+                onClick={onSubmit}>
+                    Ingresar
+                </button>
+            </div>
+            
         </div>
     )
 }
