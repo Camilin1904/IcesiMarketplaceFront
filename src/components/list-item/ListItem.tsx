@@ -17,12 +17,12 @@ export function ListItem({image, name, cost}: Props){
         displayImage = "https://via.placeholder.com/150";
     }
     return(
-        <div className="flex flex-1 bg-[#F5F1E6] text-black w-auto max-w-64 rounded-2xl">
-            <img src={displayImage} className="w-20 m-5"/>
-            <div className="flex flex-col justiify-center items-center mt-4 ">
-            <h2>{name}</h2>
-            <p>${cost} COP</p>
-            <button className="bg-[#E7CCCC] rounded-2xl w-28">Lo Quiero</button>
+        <div className="flex flex-1 bg-[#F5F1E6] text-black w-auto max-w-80 rounded-2xl ">
+            <img src={displayImage} className="w-24 m-5 rounded-xl"/>
+            <div className="flex flex-col justify-center items-center m-5">
+                <h1 className="h-7">{name}</h1>
+                <p className="h-7">${cost} COP</p>
+                <button className="bg-[#E7CCCC] rounded-2xl w-28 h-7">Lo quiero</button>
             </div>
         </div>
     )

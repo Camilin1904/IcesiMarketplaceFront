@@ -1420,6 +1420,7 @@ hasown@^2.0.0, hasown@^2.0.1, hasown@^2.0.2:
   version "0.1.0"
   resolved "file:"
   dependencies:
+    "@primer/octicons-react" "^19.12.0"
     "@reduxjs/toolkit" "^2.3.0"
     axios "^1.7.7"
     IcesiMarketplaceFront "file:"
@@ -1479,6 +1480,7 @@ internal-slot@^1.0.7:
   version "0.1.0"
   resolved "file:"
   dependencies:
+    "@primer/octicons-react" "^19.12.0"
     "@reduxjs/toolkit" "^2.3.0"
     axios "^1.7.7"
     IcesiMarketplaceFront "file:"
