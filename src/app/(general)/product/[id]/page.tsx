@@ -9,7 +9,7 @@ interface Props {
 export async function generateMetadata({params}:Props): Promise<Metadata> {
 
     try{
-        const {id} = params;
+        const {id} = await params;
 
         return{
             title: `#${id} - Product Detial`,
@@ -35,8 +35,8 @@ export async function ProductDetail({params}:Props) {
                 <div className="flex">
                     <div className="flex flex-col justify-center items-center mt-4">
                         <img src="https://via.placeholder.com/150" className="w-80 m-5 rounded-2xl"/>
-                        <div>
-                            <label>Subscribir</label>
+                        <div className="flex">
+                            <label className="w-2/3 align-bottom">Subscribir</label>
                             <HeartIcon size={24} className="ml-5" />
                         </div>
                     </div>
@@ -60,8 +60,17 @@ export async function ProductDetail({params}:Props) {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                    <div className="flex w-4/5 h-48 mt-5 justify-center overflow-y-scroll">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex quo, reiciendis tempore ipsam facere maxime eos architecto eius molestiae, ut id neque asperiores sequi laudantium totam, nemo odit delectus. Fugiat!
+                    <div className="flex w-4/5 h-48 m-5 justify-center
+                    overflow-scroll 
+                    overflow-x-hidden
+                    [&::-webkit-scrollbar]:w-2
+                    [&::-webkit-scrollbar-track]:rounded-2xl
+                    [&::-webkit-scrollbar-track]:bg-gray-100
+                    [&::-webkit-scrollbar-thumb]:rounded-2xl
+                    [&::-webkit-scrollbar-thumb]:bg-gray-300
+                    dark:[&::-webkit-scrollbar-track]:bg-[#A5B68D]
+                    dark:[&::-webkit-scrollbar-thumb]:bg-[#C1CFA1]">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex quo, reiciendis tempore ipsam facere maxime eos architecto eius molestiae, ut id neque asperiores sequi laudantium totam, nemo odit delectus. Fugiat! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus asperiores necessitatibus voluptas, ipsa corrupti optio provident culpa modi repellat assumenda aliquam odio laborum possimus dignissimos repellendus alias sunt cum sint. Lorem ipsum dolor sit amet consectetur adipisicing elit. At necessitatibus maiores eum iste doloremque placeat inventore asperiores sunt sapiente cum velit voluptatum, dolorum repellendus nisi a repellat, explicabo voluptates commodi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, nulla architecto veniam inventore aliquid, eligendi adipisci dicta, minima unde alias laborum distinctio delectus provident deserunt nobis consectetur atque perspiciatis ut. Lorem ipsum dolor sit amet consectetur adipisicing elit. Id voluptates vitae officiis illum consequuntur minima at adipisci. Illo cum natus, esse nulla odio provident. Magni atque itaque inventore optio. Quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit molestias nulla reprehenderit cupiditate dignissimos, labore, at iste natus excepturi esse dicta sequi nobis perferendis recusandae atque unde, modi distinctio assumenda?
                     </div>
                 </div>
 
