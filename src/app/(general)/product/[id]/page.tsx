@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { HeartIcon, CommentDiscussionIcon } from "@primer/octicons-react";
+import { HeartIcon, CommentDiscussionIcon, HeartFillIcon } from "@primer/octicons-react";
 
 interface Props {
     params: {id:string};
@@ -31,18 +31,25 @@ export async function ProductDetail({params}:Props) {
 
     return (
         <div className="flex justify-center items-center">
-            <div className="flex flex-col bg-[#A5B68D] rounded-2xl w-4/5 items-center justify-center">
+            <div className="flex flex-col bg-[#A5B68D] rounded-2xl w-4/5 items-center justify-center shadow-lg">
                 <div className="flex">
                     <div className="flex flex-col justify-center items-center mt-4">
                         <img src="https://via.placeholder.com/150" className="w-80 m-5 rounded-2xl"/>
-                        <div className="flex">
-                            <label className="w-2/3 align-bottom">Subscribir</label>
-                            <HeartIcon size={24} className="ml-5" />
-                        </div>
+                        <button className="group relative w-6 h-6 me-5">
+                            <HeartIcon 
+                                size={24} 
+                                className="absolute transition-opacity duration-200 opacity-100 group-hover:opacity-0"
+                            />
+                            <HeartFillIcon 
+                                size={24} 
+                                className="absolute transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+                            />
+                        </button>
+
                     </div>
                     <div className="flex flex-col ml-20 mt-12">
                         <h2 className="text-3xl font-bold mb-36">Placeholder name</h2>
-                        <label className="mb-5">Precio</label>
+                        <label className="text-xl mb-5">Precio</label>
                         <button className="bg-[#E7CCCC] rounded-2xl w-48 h-10 text-black">$12000 COP</button>
                     </div>
                     <div className="mt-14 ml-20">
@@ -53,14 +60,14 @@ export async function ProductDetail({params}:Props) {
                             </div>
                         </div>
                         
-                        <label>Categorias</label>
+                        <label className="text-xl">Categorias</label>
                         <div className="flex bg-white text-black rounded-2xl h-10 w-48 justify-center items-center mt-5">  
                             Placeholder Categories
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                    <div className="flex w-4/5 h-48 m-5 justify-center
+                    <div className="flex w-4/5 h-48 m-8 justify-center
                     overflow-scroll 
                     overflow-x-hidden
                     [&::-webkit-scrollbar]:w-2

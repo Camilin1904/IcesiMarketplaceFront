@@ -27,7 +27,7 @@ export default function LoginPage(){
     return (
         <div className="flex flex-col items-center justify-center w-full h-full text-black">
             <h1 className="mt-20 mb-20 text-black font-serif text-[75px] leading-[32px]">Registro</h1>
-            <div className="flex flex-col items-center justify-center w-1/2 h-96 text-white bg-[#A5B68D] rounded-xl">
+            <div className="flex flex-col items-center justify-center w-1/2 h-96 text-white bg-[#A5B68D] rounded-xl shadow-lg">
                 <label className="mt4 mb-4">Nombre</label>
                 <input type="text" className="w-80 h-8 px-2 border border-solid border-white text-white rounded-xl bg-[#A5B68D] mb-4 focus:outline-none" 
                 value={username} onChange={(e)=>setName(e.target.value)}/>
