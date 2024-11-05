@@ -12,9 +12,6 @@ export default function HomePage() {
 
     const products =    useGetAllProducts()
 
-    const user = useAppSelector(state => state.user);
-
-    console.log(user)
     
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">
