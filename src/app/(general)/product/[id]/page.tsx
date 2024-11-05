@@ -1,12 +1,11 @@
-import { Metadata } from "next";
 import { HeartIcon, CommentDiscussionIcon, HeartFillIcon } from "@primer/octicons-react";
 
 interface Props {
-    params: {id:string};
+    params: Promise<{id:string}>;
 
 }
 
-async function generateMetadata({params}:Props): Promise<Metadata> {
+export async function generateMetadata({params}:Props): Promise<Metadata> {
 
     try{
         const {id} = await params;
@@ -25,9 +24,7 @@ async function generateMetadata({params}:Props): Promise<Metadata> {
     
 }
 
-
-async function ProductDetail({params}:Props) {
-    const id= parseInt((await params).id);
+export default function ProductDetail() {
 
     return (
         <div className="flex justify-center items-center">
@@ -86,5 +83,3 @@ async function ProductDetail({params}:Props) {
     )
     
 }
-
-export default ProductDetail
