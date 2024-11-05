@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import {useState} from "react";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { log } from "console";
+import { remove } from "@/store/user/userSlice"
 
 export default function LoginPage(){
     const [username, setUsername] = useState("");
@@ -11,6 +12,7 @@ export default function LoginPage(){
     const {logout} = useLogout();
 
     logout();
+    remove();
     router.push("/login");
     return (
         <div className="flex flex-col items-center justify-center w-full h-full text-black">
