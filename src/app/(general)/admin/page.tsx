@@ -1,10 +1,5 @@
 import { EyeIcon, TrashIcon } from "@primer/octicons-react";
 
-export const metadata = {
-    title: "Tienda",
-    description: "Pagina principal de la tienda"
-}
-
 const users = [
     { name: 'Carlos Perez', type: 'comprador' },
     { name: 'Ana Gomez', type: 'vendedor' },

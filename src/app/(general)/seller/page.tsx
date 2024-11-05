@@ -3,11 +3,6 @@ import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { SellerItem } from "@/components/list-item/SellerItem"
 import { FeedPlusIcon } from "@primer/octicons-react"
 
-export const metadata = {
-    title: "Tienda",
-    description: "Pagina principal de la tienda"
-}
-
 export default function SellerPage() {
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">

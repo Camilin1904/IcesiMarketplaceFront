@@ -1,7 +1,11 @@
 import Cookies from 'js-cookie'
 import { AuthService } from '../services/auth.service';
+import { useAppDispatch, useAppSelector } from "@/store";
+import { initUser } from "@/store/user/userSlice";
 
 export const useLogin = () =>{
+    const user = useAppSelector(state => state.user);
+    const dispatch = useAppDispatch();
     const login = async(email: string, password:string) =>{
         const authService = new AuthService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
         await authService.check()
@@ -10,6 +14,7 @@ export const useLogin = () =>{
             // Ensure the cookie is set correctly
             Cookies.set('currentUser', JSON.stringify(user));
             console.log(Cookies.get('currentUser'));
+            dispatch(initUser(user));
         }
         else {
             throw new Error('Invalid credentials');
