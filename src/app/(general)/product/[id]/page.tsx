@@ -1,4 +1,5 @@
 import { HeartIcon, CommentDiscussionIcon, HeartFillIcon } from "@primer/octicons-react";
+import { Metadata } from "next";
 
 interface Props {
     params: Promise<{id:string}>;
