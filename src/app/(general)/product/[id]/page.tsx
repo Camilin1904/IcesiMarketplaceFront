@@ -8,7 +8,7 @@ import { useGetAllCategories } from "@/hooks/category/useGetAllCategories";
 import { CategoryList } from "@/components/category-list/CategoryList";
 
 interface Props {
-    params: {id:string};
+    params: Promise<{id:string}>;
 
 }
 
@@ -92,5 +92,3 @@ export async function ProductDetail({params}:Props) {
     )
     
 }
-
-export default ProductDetail
