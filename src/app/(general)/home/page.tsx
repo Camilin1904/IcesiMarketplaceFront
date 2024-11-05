@@ -1,6 +1,7 @@
 
 import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { ListItem } from "@/components/list-item/ListItem"
+import { useGetAllProducts } from "@/hooks/product/useGetAllProducts"
 
 export const metadata = {
     title: "Tienda",
@@ -8,6 +9,8 @@ export const metadata = {
 }
 
 export default function HomePage() {
+
+    const products =    useGetAllProducts()
 
     
     return (
@@ -26,42 +29,20 @@ export default function HomePage() {
             dark:[&::-webkit-scrollbar-track]:bg-[#C1CFA1]
             dark:[&::-webkit-scrollbar-thumb]:bg-[#A5B68D]">
                 <div className="grid grid-cols-3 gap-12">
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                    <ListItem image="" name="Colitas cubanas" cost={12500}/>
+                    {
+                        products.then(products=>products.map(product=>{
+                            const name = product.name;
+                            const cost = product.cost;
+                            const id = product.id;  
+                            const all = {id, name, cost}
+                            return (
+                                <ListItem key={product.id} {...all} />
+                            )
+                        }
+                            
+                        )
+                        )
+                    }
                 </div>
             </div>
             

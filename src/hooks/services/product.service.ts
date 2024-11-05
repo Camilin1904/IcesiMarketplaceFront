@@ -1,3 +1,4 @@
+import { Product } from '@/interface/Product';
 import axios, { AxiosInstance } from 'axios'
 
 export class ProductService{
@@ -24,9 +25,9 @@ export class ProductService{
     }
 
 
-    public async getAll(): Promise<any> {
+    public async getAll(): Promise<Product[] | null> {
         try {
-            const response = await this.axios.get('/product', {})
+            const response = await this.axios.get('/products', {})
             return response.data 
         } catch (error) {
             console.log(error)
@@ -34,9 +35,9 @@ export class ProductService{
         }
     }
 
-    public async findById(name: string, email: string, password: string): Promise<any> {
+    public async findById(id: string): Promise<Product | null> {
         try {
-            const response = await this.axios.post('/auth/register', {"name":name, "email":email, "password":password})
+            const response = await this.axios.get('/products/'+id, {})
             return response.data 
         } catch (error) {
             console.log(error)

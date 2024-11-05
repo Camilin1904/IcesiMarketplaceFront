@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import { AuthService } from './services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 export const useSignUp = () =>{
     const signUp = async(name: string, email: string, password:string) =>{
