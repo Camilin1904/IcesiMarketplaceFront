@@ -1,8 +1,11 @@
+
 import { Metadata } from "next";
 import { HeartIcon, CommentDiscussionIcon, HeartFillIcon } from "@primer/octicons-react";
 import { use } from "react";
 import { useGetProductById } from "@/hooks/product/useGetProductById";
 import { useGetByProduct } from "@/hooks/category/useGetByProduct";
+import { useGetAllCategories } from "@/hooks/category/useGetAllCategories";
+import { CategoryList } from "@/components/category-list/CategoryList";
 
 interface Props {
     params: {id:string};
@@ -30,10 +33,8 @@ export async function generateMetadata({params}:Props): Promise<Metadata> {
 
 
 export async function ProductDetail({params}:Props) {
-    const id:string= (await params).id;
-
+    const id:string= (await params).id; 
     const product = useGetProductById(id);
-    const categories = useGetByProduct(id);
 
     return (
         <div className="flex justify-center items-center">
@@ -67,10 +68,8 @@ export async function ProductDetail({params}:Props) {
                         </div>
                         
                         <label className="text-xl">Categorias</label>
+                        <CategoryList key={id}{...{id}} />
                         
-                        <div className="flex bg-white text-black rounded-2xl h-10 w-48 justify-center items-center mt-5">  
-                            Placeholder Categories
-                        </div>
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-center">
