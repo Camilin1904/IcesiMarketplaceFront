@@ -1,21 +1,28 @@
 
 import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { ListItem } from "@/components/list-item/ListItem"
-import { useGetAllProducts } from "@/hooks/product/useProduct"
+import { useFilterProducts, useGetAllProducts } from "@/hooks/product/useProduct"
+
+interface Props {
+    params: {filter:string};
+
+}
 
 export const metadata = {
     title: "Tienda",
     description: "Pagina principal de la tienda"
 }
 
-export default function HomePage() {
+export default function FindPage({params}:Props) {
 
-    const products =    useGetAllProducts()
+    const filter = (params).filter;
+    console.log(filter)
+
+    const products = useFilterProducts(filter)
 
     
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">
-            <label className="font-serif text-[100px] text-black font-light">ICESI - Market</label>
             <CategoryBar/>
             <div className="
             flex flex-row items-center justify-center mt-16 w-3/4 h-96 bg-[#C1CFA1] rounded-2xl rounded-r-lg overflow-scroll 

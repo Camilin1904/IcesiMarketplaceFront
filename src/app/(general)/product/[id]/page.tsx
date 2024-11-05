@@ -2,7 +2,7 @@
 import { Metadata } from "next";
 import { HeartIcon, CommentDiscussionIcon, HeartFillIcon } from "@primer/octicons-react";
 import { use } from "react";
-import { useGetProductById } from "@/hooks/product/useGetProductById";
+import { useGetProductById } from "@/hooks/product/useProduct";
 import { useGetByProduct } from "@/hooks/category/useGetByProduct";
 import { useGetAllCategories } from "@/hooks/category/useGetAllCategories";
 import { CategoryList } from "@/components/category-list/CategoryList";

@@ -3,14 +3,11 @@ import { AuthService } from '../services/auth.service';
 import { CategoryService } from '../services/category.service';
 
 export const useGetAllCategories = () =>{
-    const products = async() =>{
+    const categories = () =>{
         const authService = new CategoryService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
-        const products = await authService.getAllCategories();
-        if(!products){
-            throw new Error('Unexpected error');
-        }
-        return await products;
+        const categories =  authService.getAllCategories();
+        return categories;
     }
 
-    return products();
+    return categories();
 }

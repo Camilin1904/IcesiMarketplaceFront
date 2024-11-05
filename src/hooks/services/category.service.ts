@@ -38,28 +38,26 @@ export class CategoryService {
         return {};
     }
 
-    public  getAllCategories() {
+    public async getAllCategories() {
         try {
-            const response =  this.axios.get("/categories", this.getAuthHeaders());
-            var result = null;
-            response.then((value) => {
-                result = value.data;
+            const token = this.getAuthToken();
+            const response = await this.axios.get("/categories", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
-            return result;
+            return response.data;
         } catch (error) {
             console.error('Error fetching categories', error);
             throw error;
         }
     }
 
-    public  getCategoryById(id: string) {
+    public async getCategoryById(id: string) {
         try {
-            const response = this.axios.get(`/categories/${id}`, this.getAuthHeaders());
-            var result = null;
-            response.then((value) => {
-                result = value.data;
-            });
-            return result;
+            const response = await this.axios.get(`/categories/${id}`, this.getAuthHeaders());
+            
+            return response.data;
         } catch (error) {
             console.error(`Error fetching category with id ${id}`, error);
             throw error;

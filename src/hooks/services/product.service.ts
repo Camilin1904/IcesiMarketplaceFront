@@ -44,4 +44,15 @@ export class ProductService{
             return null   
         }
     }
+
+    public async filter(filter: string): Promise<Product[] | null> {
+        try {
+            //console.log(filter)
+            const response = await this.axios.get('/products?'+filter, {})
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
 }
