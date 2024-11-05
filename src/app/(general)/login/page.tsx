@@ -10,18 +10,19 @@ export default function LoginPage(){
     const router = useRouter();
     const {login} = useLogin();
 
-    const onSubmit = ()=>{
+    const onSubmit = async()=>{
         if(!username||!password){
            alert('Please enter Username.')
         }
         else{
-            login(username, password)
+            const user = login(username, password)
                 .then(()=>router.push("/home"))
                 .catch((e:Error) => {
                     setUsername("");
                     setPassword("");
                     alert("Invalid Credentials")
                 })
+            console.log(await user);
         }
     }
     return (

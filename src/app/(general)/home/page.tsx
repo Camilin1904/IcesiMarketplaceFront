@@ -1,4 +1,4 @@
-
+"use client"
 import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { ListItem } from "@/components/list-item/ListItem"
 import { useGetAllProducts } from "@/hooks/product/useProduct"
@@ -12,6 +12,9 @@ export default function HomePage() {
 
     const products =    useGetAllProducts()
 
+    const user = useAppSelector(state => state.user);
+
+    console.log(user)
     
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">

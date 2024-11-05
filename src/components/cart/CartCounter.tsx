@@ -1,6 +1,6 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { decrement, increment, initCount } from "@/store/counter/counterSlice";
+import { decrement, increment, initCount } from "@/store/user/userSlice";
 import { useEffect, useState } from "react";
 
 interface Props{
