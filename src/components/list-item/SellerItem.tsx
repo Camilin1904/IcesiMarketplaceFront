@@ -8,7 +8,7 @@ interface Props{
     cost: number;
 }
 
-export function ListItem({image, name, cost}: Props){
+export function SellerItem({image, name, cost}: Props){
     var displayImage;
     if(image){
         displayImage = image;
@@ -22,7 +22,7 @@ export function ListItem({image, name, cost}: Props){
             <div className="flex flex-col justify-center items-center m-5">
                 <h1 className="h-7">{name}</h1>
                 <p className="h-7">${cost} COP</p>
-                <button className="bg-[#E7CCCC] rounded-2xl w-28 h-7">Lo quiero</button>
+                <button className="bg-[#E7CCCC] rounded-2xl w-28 h-7">Editar</button>
             </div>
         </div>
     )

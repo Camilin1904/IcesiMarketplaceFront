@@ -12,12 +12,12 @@ const categories=[
 ]
 export function CategoryBar(){
     return(
-        <nav className="flex bg-[#A5B68D] p-2 m-2 rounded text-black w-full justify-center align-center ">    
+        <nav className="flex bg-[#A5B68D] p-2 m-2 rounded-xl text-black w-3/4 justify-center align-center shadow-lg">    
             <div className="h-15 flex items-center">
                 <div className="flex flex-1"></div>
                         {
                             categories.map(item => (
-                                <ActiveLink2 key={item.path} {...item} />
+                                <ActiveLink2 key={item.name} {...item} />
                             ))
                         }
             </div>
