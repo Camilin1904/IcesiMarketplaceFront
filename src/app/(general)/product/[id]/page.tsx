@@ -6,7 +6,7 @@ interface Props {
 
 }
 
-export async function generateMetadata({params}:Props): Promise<Metadata> {
+async function generateMetadata({params}:Props): Promise<Metadata> {
 
     try{
         const {id} = await params;
@@ -26,7 +26,7 @@ export async function generateMetadata({params}:Props): Promise<Metadata> {
 }
 
 
-export async function ProductDetail({params}:Props) {
+async function ProductDetail({params}:Props) {
     const id= parseInt((await params).id);
 
     return (
