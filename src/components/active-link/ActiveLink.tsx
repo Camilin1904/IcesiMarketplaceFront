@@ -10,7 +10,7 @@ interface Props{
 export const ActiveLink = ({path, name}:Props) =>{
     const pathname = usePathname();
     return (
-        <Link href={path} className={`p-2 m-2 text-black ${style.link} ${pathname===path?style.active: ""}`}>
+        <Link href={path} className={`p-2 m-2 text-black rounded-full ${pathname===path?style.active: ""}`}>
             {name}
         </Link>
     )
