@@ -8,6 +8,8 @@ export const metadata = {
 }
 
 export default function HomePage() {
+
+    
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">
             <label className="font-serif text-[100px] text-black font-light">ICESI - Market</label>

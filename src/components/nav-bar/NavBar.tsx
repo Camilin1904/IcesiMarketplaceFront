@@ -1,19 +1,23 @@
-import { HomeIcon, PersonIcon, SearchIcon, PackageIcon } from "@primer/octicons-react";
+import { HomeIcon, PersonIcon, SearchIcon, PackageIcon, SignOutIcon } from "@primer/octicons-react";
 import Link from "next/link";
 import { ActiveLink } from "../active-link/ActiveLink";
-
 const navItems=[
     {name:'¿Quienes Somos?', path:'/about'},
     {name:'Únetenos', path:'/pricing'},
     {name:'Contacto', path:'/contact'},
 
 ]
+
+
 export function NavBar(){
     return(
         <nav className="flex  bg-opacity-30 p-2 m-2 rounded text-black ">
 
                 <div className="flex items-center w-full">
                     <div className="flex justify-start w-1/3">
+                        <Link href="/logout" className="p-2 m-2 text-black">
+                            <SignOutIcon className="mr-2" size={24} />
+                        </Link>
                         <Link href="/" className="p-2 m-2 text-black">
                             <HomeIcon className="mr-2" size={24} />
                         </Link>

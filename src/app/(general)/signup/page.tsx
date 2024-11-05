@@ -1,26 +1,26 @@
 "use client";
 import { useRouter } from "next/navigation";
 import {useState} from "react";
-import { useLogin } from "@/hooks/auth/useLogin";
+import { useSignUp } from "@/hooks/auth/useSignUp";
 
 export default function LoginPage(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const router = useRouter();
-    const {login} = useLogin();
+    const {signUp} = useSignUp();
 
     const onSubmit = ()=>{
         if(!username||!password){
            alert('Please enter Username.')
         }
         else{
-            login(username, password)
-                .then(()=>router.push("/profile"))
+            signUp(name, username, password)
+                .then(()=>router.push("/login"))
                 .catch((e:Error) => {
                     setUsername("");
                     setPassword("");
-                    alert("Invalid Credentials")
+                    alert("Invalid data")
                 })
         }
     }
@@ -30,7 +30,7 @@ export default function LoginPage(){
             <div className="flex flex-col items-center justify-center w-1/2 h-96 text-white bg-[#A5B68D] rounded-xl">
                 <label className="mt4 mb-4">Nombre</label>
                 <input type="text" className="w-80 h-8 px-2 border border-solid border-white text-white rounded-xl bg-[#A5B68D] mb-4 focus:outline-none" 
-                value={username} onChange={(e)=>setName(e.target.value)}/>
+                value={name} onChange={(e)=>setName(e.target.value)}/>
                 <label className="mt4 mb-4">Correo</label>
                 <input type="text" className="w-80 h-8 px-2 border border-solid border-white text-white rounded-xl bg-[#A5B68D] mb-4 focus:outline-none" 
                 value={username} onChange={(e)=>setUsername(e.target.value)}/>

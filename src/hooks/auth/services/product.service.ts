@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 
-export class AuthService{
+export class ProductService{
     protected readonly axios: AxiosInstance;
 
     public constructor(url: string){
@@ -24,9 +24,9 @@ export class AuthService{
     }
 
 
-    public async login(email: string, password: string): Promise<any> {
+    public async getAll(): Promise<any> {
         try {
-            const response = await this.axios.post('/auth/login', {"email":email, "password":password})
+            const response = await this.axios.get('/product', {})
             return response.data 
         } catch (error) {
             console.log(error)
@@ -34,7 +34,7 @@ export class AuthService{
         }
     }
 
-    public async signUp(name: string, email: string, password: string): Promise<any> {
+    public async findById(name: string, email: string, password: string): Promise<any> {
         try {
             const response = await this.axios.post('/auth/register', {"name":name, "email":email, "password":password})
             return response.data 
