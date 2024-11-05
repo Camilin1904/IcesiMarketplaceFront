@@ -7,7 +7,9 @@ export const useLogin = () =>{
         await authService.check()
         const user = await authService.login(email, password);
         if(user){
+            // Ensure the cookie is set correctly
             Cookies.set('currentUser', JSON.stringify(user));
+            console.log(Cookies.get('currentUser'));
         }
         else {
             throw new Error('Invalid credentials');
