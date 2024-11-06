@@ -31,9 +31,10 @@ export function CategoryBar(){
         function fetchCategories() {
             var categoriesData:Category[] = [];
             useGetAllCategories().then((data) => {
+                console.log(data);
                 categoriesData = data;
+                setCategories(categoriesData);
             });
-            setCategories(categoriesData);
         }
         fetchCategories();
     }, []);
