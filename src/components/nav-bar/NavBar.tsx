@@ -16,7 +16,7 @@ export function NavBar(){
 
                 <div className="flex items-center w-full">
                     <div className="flex justify-start w-1/5">
-                        <Link href="/logout" className="p-2 m-2 text-black">
+                        <Link data-key="logout" href="/logout" className="p-2 m-2 text-black">
                             <SignOutIcon className="mr-2" size={24} />
                         </Link>
                         <Link href="/home" className="p-2 m-2 text-black">

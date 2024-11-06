@@ -3,10 +3,6 @@ import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { ListItem } from "@/components/list-item/ListItem"
 import { useGetAllProducts } from "@/hooks/product/useProduct"
 
-export const metadata = {
-    title: "Tienda",
-    description: "Pagina principal de la tienda"
-}
 
 export default function HomePage() {
 
