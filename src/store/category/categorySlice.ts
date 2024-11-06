@@ -2,31 +2,24 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface CategoryState {
     category: string,
-    initialized: boolean
 }
 
 const initialState: CategoryState = {
     category: '',
-    initialized: false
 }
 
 
 export const userSlice = createSlice({
-    name: 'user',
+    name: 'category',
     initialState,
     reducers:{
-        initCategory: (state, action: PayloadAction<CategoryState>) => {
-            if(state.initialized){
-                return;
-            }
+        initCategory: (state, action: PayloadAction<string>) => {
 
-            state.category = action.payload.category;
+            state.category = action.payload;
             
-            state.initialized = true;
         },
         remove: (state) => {
             state.category = '';
-            state.initialized = false;
         },
     }   
 });

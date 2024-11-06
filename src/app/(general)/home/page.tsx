@@ -1,4 +1,3 @@
-"use client"
 import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { ListItem } from "@/components/list-item/ListItem"
 import { useGetAllProducts } from "@/hooks/product/useProduct"

@@ -3,17 +3,13 @@ import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { ListItem } from "@/components/list-item/ListItem"
 import { useFilterProducts, useGetAllProducts } from "@/hooks/product/useProduct"
 
-interface Props {
-    params: {filter:string};
-
-}
 
 export const metadata = {
     title: "Tienda",
     description: "Pagina principal de la tienda"
 }
 
-export default function FindPage({params}:Props) {
+export default function FindPage() {
 
     const filter = (params).filter;
     console.log(filter)
