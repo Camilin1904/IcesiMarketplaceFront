@@ -22,14 +22,17 @@ const categories=[
     {name:'Otros', path:''},
 
 ]*/
-export async function CategoryBar(){
+export function CategoryBar(){
     const router = useRouter();
     const dispatch = useAppDispatch();
     const [categories, setCategories] = useState<Category[] | null>(null);
 
     useEffect(() => {
-        async function fetchCategories() {
-            const categoriesData = await useGetAllCategories();
+        function fetchCategories() {
+            var categoriesData:Category[] = [];
+            useGetAllCategories().then((data) => {
+                categoriesData = data;
+            });
             setCategories(categoriesData);
         }
         fetchCategories();

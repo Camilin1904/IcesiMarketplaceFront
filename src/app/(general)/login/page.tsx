@@ -10,7 +10,7 @@ export default function LoginPage(){
     const router = useRouter();
     const {login} = useLogin();
 
-    const onSubmit = async()=>{
+    const onSubmit = ()=>{
         if(!username||!password){
            alert('Please enter Username.')
         }
@@ -22,7 +22,6 @@ export default function LoginPage(){
                     setPassword("");
                     alert("Invalid Credentials")
                 })
-            console.log(await user);
         }
     }
     return (

@@ -7,8 +7,11 @@ interface props{
     id:string
 }
 
-export async function CategoryList({id}:props){
-    const categories:Category[] | null = await useGetByProduct(id)
+export  function CategoryList({id}:props){
+    var categories:Category[] | null =  [];
+    useGetByProduct(id).then((data)=>{
+        categories = data;
+    })
     console.log(categories)
     return(
         <>
