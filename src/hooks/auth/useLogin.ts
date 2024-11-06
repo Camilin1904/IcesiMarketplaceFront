@@ -12,7 +12,7 @@ export const useLogin = () =>{
         const user = await authService.login(email, password);
         if(user){
             // Ensure the cookie is set correctly
-            Cookies.set('currentUser', JSON.stringify(user));
+            Cookies.set('currentUser', JSON.stringify(user), {expires: 1, sameSite: 'strict'});
             console.log(Cookies.get('currentUser'));
             dispatch(initUser(user));
         }

@@ -37,7 +37,7 @@ export async function CategoryBar(){
 
     const defineFilter = (category: string) => {
         dispatch(initFilter(`/categories=${category}`));
-        Cookies.set('filter', `/categories=${category}`);
+        Cookies.set('filter', `/categories=${category}`, {expires: 1, sameSite: 'strict'});
         router.push(`/find`);
     };
 
