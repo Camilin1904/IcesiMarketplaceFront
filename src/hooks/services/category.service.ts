@@ -55,7 +55,13 @@ export class CategoryService {
 
     public async getCategoryById(id: string) {
         try {
-            const response = await this.axios.get(`/categories/${id}`, this.getAuthHeaders());
+            const token = this.getAuthToken();
+
+            const response = await this.axios.get(`/categories/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             
             return response.data;
         } catch (error) {

@@ -1,19 +1,44 @@
 import { Product } from '@/interface/Product';
 import axios, { AxiosInstance } from 'axios'
+import Cookies from 'js-cookie';
+
 
 export class ProductService{
-    protected readonly axios: AxiosInstance;
 
-    public constructor(url: string){
+    private axios: AxiosInstance;
+
+    public constructor(baseUrl: string) {
+        const token = this.getAuthToken();
         this.axios = axios.create({
-            baseURL: url,
+            baseURL: baseUrl,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
             },
-            timeout: 10000
-        })
+            timeout: 10000, // Set a timeout of 10 seconds
+        });
     }
 
+    private getAuthToken(): string | null {
+        const currentUser = Cookies.get('currentUser');
+        if (currentUser) {
+            const user = JSON.parse(currentUser);
+            return user.token;
+        }
+        return null;
+    }
+
+    private getAuthHeaders() {
+        const token = this.getAuthToken();
+        if (token) {
+            return {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            };
+        }
+        return {};
+    }
     public async check(): Promise<any>{
         try {
             const response = await this.axios.get('')
@@ -23,7 +48,6 @@ export class ProductService{
             return null   
         }
     }
-
 
     public async getAll(): Promise<Product[] | null> {
         try {
@@ -47,8 +71,21 @@ export class ProductService{
 
     public async filter(filter: string): Promise<Product[] | null> {
         try {
-            //console.log(filter)
-            const response = await this.axios.get('/products?'+filter, {})
+            console.log(filter)
+            const filtersArray = filter.split('/');
+            const categoryFilters = filtersArray.filter(f => f.startsWith('categories')).join('&');
+            const nameFilters = filtersArray.filter(f => f.startsWith('name')).join('&');
+            const costHighFilters = filtersArray.filter(f => f.startsWith('costHigh')).join('&');
+            const costLowFilters = filtersArray.filter(f => f.startsWith('costLow')).join('&');
+            const inStockFilters = filtersArray.filter(f => f.startsWith('inStock')).join('&');
+            
+            console.log(categoryFilters)
+            const queryString = [categoryFilters, nameFilters, costHighFilters, costLowFilters, inStockFilters]
+                .filter(f => f.length > 0)
+                .join('&');
+
+            const response = await this.axios.get(`/products?${queryString}`, {})
+            console.log(response)
             return response.data 
         } catch (error) {
             console.log(error)

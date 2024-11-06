@@ -21,9 +21,6 @@ export const useGetAllProducts = () =>{
         const service = new ProductService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
         await service.check()
         const products = await service.getAll();
-        if(!products){
-            throw new Error('Unexpected error');
-        }
         return await products;
     }
 
@@ -35,9 +32,6 @@ export const useFilterProducts = (filter: string) =>{
         const service = new ProductService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
         await service.check()
         const products = await service.filter(filter);
-        if(!products){
-            throw new Error('Unexpected error');
-        }
         return await products;
     }
 

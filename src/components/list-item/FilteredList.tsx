@@ -5,13 +5,13 @@ import { useAppSelector } from "@/store";
 
 
 export function FilteredList() {
-    const filter = useAppSelector(state=>state.category);
-    const products = useFilterProducts(filter.category)
+    const filter = useAppSelector(state=>state.filter);
+    const products = useFilterProducts(filter.filter)
 
     return (
         <>
             {
-                products.then(products=>products.map(product=>{
+                products.then(products=>products?.map(product=>{
                     const name = product.name;
                     const cost = product.cost;
                     const id = product.id;  

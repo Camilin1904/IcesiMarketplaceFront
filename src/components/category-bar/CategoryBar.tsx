@@ -6,9 +6,11 @@ import { Category } from "@/interface/Category";
 import { useGetAllCategories } from "@/hooks/category/useGetAllCategories";
 import path from "path";
 import { useAppDispatch } from "@/store";
-import { initCategory } from "@/store/category/categorySlice";
+import { initFilter } from "@/store/filter/filterSlice";
 import { Router } from "next/router";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
 
 
 /*
@@ -22,13 +24,22 @@ const categories=[
 ]*/
 export async function CategoryBar(){
     const router = useRouter();
-    const categories: Category[] | null = await useGetAllCategories();
-    const defineFilter = (category: string) => {
-        const dispatch = useAppDispatch();
-        dispatch(initCategory(category))
+    const dispatch = useAppDispatch();
+    const [categories, setCategories] = useState<Category[] | null>(null);
 
-        router.push(`/find`)
-    }
+    useEffect(() => {
+        async function fetchCategories() {
+            const categoriesData = await useGetAllCategories();
+            setCategories(categoriesData);
+        }
+        fetchCategories();
+    }, []);
+
+    const defineFilter = (category: string) => {
+        dispatch(initFilter(`/categories=${category}`));
+        Cookies.set('filter', `/categories=${category}`);
+        router.push(`/find`);
+    };
 
     return(
         <nav className="flex bg-[#A5B68D] p-2 m-2 rounded-xl text-black w-3/4 justify-center align-center shadow-lg">    
@@ -38,7 +49,7 @@ export async function CategoryBar(){
                             categories?.map(item => {
                                 const props = {path: item.id, name: item.name}
                                 return (
-                                    <button value={item.id} onClick={()=>defineFilter(item.id)} className="flex justify-center align-center w-40 transition-all bg-[#EDE8DC] hover:bg-[#C1CFA1] p-2 m-2 mr-5 ml-5 text-black rounded-3xl hover:text-white">
+                                    <button value={item.id} onClick={()=>defineFilter(item.name)} className="flex justify-center align-center w-40 transition-all bg-[#EDE8DC] hover:bg-[#C1CFA1] p-2 m-2 mr-5 ml-5 text-black rounded-3xl hover:text-white">
                                         {item.name}
                                     </button>
                                 )

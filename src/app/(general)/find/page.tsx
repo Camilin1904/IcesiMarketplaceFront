@@ -1,8 +1,9 @@
 
 import { CategoryBar } from "@/components/category-bar/CategoryBar"
+import { FilterBar } from "@/components/filter-bar/FilterBar"
+import { FilteredList } from "@/components/list-item/FilteredList"
 import { ListItem } from "@/components/list-item/ListItem"
 import { useFilterProducts, useGetAllProducts } from "@/hooks/product/useProduct"
-
 
 export const metadata = {
     title: "Tienda",
@@ -11,15 +12,11 @@ export const metadata = {
 
 export default function FindPage() {
 
-    const filter = (params).filter;
-    console.log(filter)
-
-    const products = useFilterProducts(filter)
 
     
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">
-            <CategoryBar/>
+            <FilterBar/>
             <div className="
             flex flex-row items-center justify-center mt-16 w-3/4 h-96 bg-[#C1CFA1] rounded-2xl rounded-r-lg overflow-scroll 
             overflow-x-hidden
@@ -32,20 +29,7 @@ export default function FindPage() {
             dark:[&::-webkit-scrollbar-track]:bg-[#C1CFA1]
             dark:[&::-webkit-scrollbar-thumb]:bg-[#A5B68D]">
                 <div className="grid grid-cols-3 gap-12">
-                    {
-                        products.then(products=>products.map(product=>{
-                            const name = product.name;
-                            const cost = product.cost;
-                            const id = product.id;  
-                            const all = {id, name, cost}
-                            return (
-                                <ListItem key={product.id} {...all} />
-                            )
-                        }
-                            
-                        )
-                        )
-                    }
+                   <FilteredList/>
                 </div>
             </div>
             

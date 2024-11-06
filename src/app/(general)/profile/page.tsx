@@ -56,16 +56,7 @@ export default function Profile(){
                         </>
                     ) : (
                         <>
-                            <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                            <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                            <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                            <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                            <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                            <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                            <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                            <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                            <ListItem image="" name="Colitas cubanas" cost={12500}/>
-                            <ListItem image="" name="Colitas cubanas" cost={12500}/>
+
                         </>
                     )}
                 </div>

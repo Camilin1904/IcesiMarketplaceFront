@@ -32,7 +32,7 @@ export async function generateMetadata({params}:Props): Promise<Metadata> {
 }
 
 
-export async function ProductDetail({params}:Props) {
+export default async function ProductDetail({params}:Props) {
     const id:string= (await params).id; 
     const product = useGetProductById(id);
 
