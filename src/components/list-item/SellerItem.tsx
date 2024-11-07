@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ActiveLink2 } from "../active-link/ActiveLink";
 
 interface Props{
-    image: string;
+    image?: string;
     name: string;
     cost: number;
 }

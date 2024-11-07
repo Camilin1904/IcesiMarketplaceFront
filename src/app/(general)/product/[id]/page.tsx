@@ -6,6 +6,7 @@ import { useGetProductById } from "@/hooks/product/useProduct";
 import { useGetByProduct } from "@/hooks/category/useGetByProduct";
 import { useGetAllCategories } from "@/hooks/category/useGetAllCategories";
 import { CategoryList } from "@/components/category-list/CategoryList";
+import { SubscribeButton } from "@/components/subscibe-button/SubscribeButton";
 
 interface Props {
     params: Promise<{id:string}>;
@@ -42,17 +43,7 @@ export default async function ProductDetail({params}:Props) {
                 <div className="flex">
                     <div className="flex flex-col justify-center items-center mt-4">
                         <img src="https://via.placeholder.com/150" className="w-80 m-5 rounded-2xl"/>
-                        <button className="group relative w-6 h-6 me-5">
-                            <HeartIcon 
-                                size={24} 
-                                className="absolute transition-opacity duration-200 opacity-100 group-hover:opacity-0"
-                            />
-                            <HeartFillIcon 
-                                size={24} 
-                                className="absolute transition-opacity duration-200 opacity-0 group-hover:opacity-100"
-                            />
-                        </button>
-
+                        <SubscribeButton key={id}{...{pId:id}}/>
                     </div>
                     <div className="flex flex-col ml-20 mt-12">
                         <h2 className="text-3xl font-bold mb-36">{(await product).name}</h2>

@@ -27,13 +27,9 @@ export const useGetAllProducts = () =>{
     return products();
 }
 
-export const useFilterProducts = (filter: string) =>{
-    const products = async() =>{
-        const service = new ProductService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
-        await service.check()
-        const products = await service.filter(filter);
-        return await products;
-    }
 
-    return products();
+
+export const useSubscribe = (id: string) =>{
+    const service = new ProductService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
+    service.subscribe(id);
 }

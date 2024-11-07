@@ -8,21 +8,17 @@ interface props{
 }
 
 export  function CategoryList({id}:props){
-    var categories:Category[] | null =  [];
-    useGetByProduct(id).then((data)=>{
-        categories = data;
-    })
-    console.log(categories)
+    const categories = useGetByProduct(id);
     return(
         <>
             {
-                 categories?.map((category: any)=> {
+                 categories.then((categories)=>categories?.map((category: any)=> {
                     return(
                         <div className="flex bg-white text-black rounded-2xl h-10 w-48 justify-center items-center mt-5">  
                             {category.name}
                         </div>
                     )
-                })
+                }))
             }
         </>
     )

@@ -22,7 +22,7 @@ export function NavBar(){
                         <Link href="/home" className="p-2 m-2 text-black">
                             <HomeIcon className="mr-2" size={24} />
                         </Link>
-                        <Link href="/" className="p-2 m-2 text-black">
+                        <Link href="/profile" className="p-2 m-2 text-black">
                             <PersonIcon className="mr-2" size={24} />
                         </Link>
                     </div>

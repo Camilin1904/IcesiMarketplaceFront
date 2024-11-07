@@ -1,13 +1,12 @@
 import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { ListItem } from "@/components/list-item/ListItem"
+import PageChanger from "@/components/pagination/pageChanger";
 import { useGetAllProducts } from "@/hooks/product/useProduct"
 
-
 export default function HomePage() {
-
-    const products =    useGetAllProducts()
-
+    const products = useGetAllProducts();
     
+
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">
             <label className="font-serif text-[100px] text-black font-light">ICESI - Market</label>
@@ -25,7 +24,7 @@ export default function HomePage() {
             dark:[&::-webkit-scrollbar-thumb]:bg-[#A5B68D]">
                 <div className="grid grid-cols-3 gap-12">
                     {
-                        products.then(products=>products?.map(product=>{
+                        products.then(products => products?.map(product => {
                             const name = product.name;
                             const cost = product.cost;
                             const id = product.id;  
@@ -33,14 +32,12 @@ export default function HomePage() {
                             return (
                                 <ListItem key={product.id} {...all} />
                             )
-                        }
-                            
-                        )
-                        )
+                        }))
                     }
                 </div>
             </div>
-            
+            <PageChanger/>
+           
         </div>
     )
 }

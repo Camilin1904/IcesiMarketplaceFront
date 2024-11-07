@@ -1,28 +1,28 @@
 "use client";
-import { useFilterProducts, useGetAllProducts } from "@/hooks/product/useProduct"
+import { useGetAllProducts } from "@/hooks/product/useProduct"
+import { useFilterProducts } from "@/hooks/product/useFilterProduct"
 import { ListItem } from "@/components/list-item/ListItem"
 import { useAppSelector } from "@/store";
-
+import Cookies from 'js-cookie';
+import { Product } from "@/interface/Product";
 
 export function FilteredList() {
-    const filter = useAppSelector(state=>state.filter);
-    const products = useFilterProducts(filter.filter)
+    const filter = Cookies.get('filter');
+    console.log(filter);
+    const products = useFilterProducts(filter ? filter : '');
 
     return (
         <>
             {
-                products.then(products=>products?.map(product=>{
+                products?.map((product: Product) => {
                     const name = product.name;
                     const cost = product.cost;
                     const id = product.id;  
-                    const all = {id, name, cost}
+                    const all = { id, name, cost }
                     return (
                         <ListItem key={product.id} {...all} />
                     )
-                }
-                    
-                )
-                )
+                })
             }
         </>
     )
