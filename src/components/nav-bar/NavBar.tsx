@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ActiveLink } from "../active-link/ActiveLink";
 const navItems=[
     {name:'¿Quienes Somos?', path:'/about'},
-    {name:'Únetenos', path:'/pricing'},
+    {name:'Únetenos', path:'/join'},
     {name:'Mis productos', path:'/seller'},
     {name:'Contacto', path:'/contact'},
 

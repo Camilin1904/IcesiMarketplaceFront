@@ -28,17 +28,6 @@ export class ProductService{
         return null;
     }
 
-    private getAuthHeaders() {
-        const token = this.getAuthToken();
-        if (token) {
-            return {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            };
-        }
-        return {};
-    }
     public async check(): Promise<any>{
         try {
             const response = await this.axios.get('')
@@ -64,7 +53,12 @@ export class ProductService{
 
     public async myProducts(): Promise<Product[] | null> {
         try {
-            const response = await this.axios.get('/products/myProducts')
+            const response = await this.axios.get('/products/myProducts', {
+                headers: {
+                    Authorization: `Bearer ${this.getAuthToken()}`
+                }
+            })
+            console.log(response);
             return response.data 
         } catch (error) {
             console.log(error)

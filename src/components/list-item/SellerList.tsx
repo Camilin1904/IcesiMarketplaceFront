@@ -16,6 +16,7 @@ export function SellerList(){
     const [showSellerItems, setShowSellerItems] = useState(false); 
 
     const subscribedItems = useSubscribedProducts().products;
+    console.log(subscribedItems);
 
 
     return(

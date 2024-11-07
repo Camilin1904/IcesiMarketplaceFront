@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 import { AuthService } from '../services/auth.service';
 import { ProductService } from '../services/product.service';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Product } from '@/interface/Product';
 
 export const useGetProductById = (id: string) =>{
@@ -56,15 +56,23 @@ export const useUpdateProduct = (product: any) => {
     return updateProduct();
 }
 
-export const useMyProducts = () =>{
-    const products = async() =>{
-        const service = new ProductService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
-        await service.check()
-        const products = await service.myProducts();
-        return await products;
-    }
+export const useMyProducts = () => {
+    const [products, setProducts] = useState<Product[] | null>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
-    return products();
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const service = new ProductService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
+            await service.check();
+            const products = await service.myProducts();
+            setProducts(products);
+            setLoading(false);
+        };
+
+        fetchProducts();
+    }, []); // Empty dependency array ensures this runs only once
+
+    return { products, loading };
 }
 
 export const useDeleteProduct = (id: string) => {

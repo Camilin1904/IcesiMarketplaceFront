@@ -10,7 +10,7 @@ import { SellerList } from "@/components/list-item/SellerList";
 
 
 export default function Profile(){
-    const user = useProfile().getProfile();
+    const user = useProfile();
     const {logout} = useLogout();
 
     return(
@@ -18,21 +18,19 @@ export default function Profile(){
             <div className="grid grid-cols-2 gap-0 bg-[#A5B68D] rounded-2xl w-4/5 h-3/4 shadow-lg">
                 <div className="grid grid-cols-1 w-full h-full mt-10 ml-10">
                     <div className="font-bold text-lg h-1/">Nombre
-                        <h1 className="font-normal text-base mt-1">{user.then((user)=>user.name)}</h1>
+                        <h1 className="font-normal text-base mt-1">{user?.name}</h1>
                     </div>
                     <div className="font-bold text-lg h-1/">Tipo
-                        <h1 className="font-normal text-base mt-1">{user.then((user)=>user.roles.join(', '))}</h1>
+                        <h1 className="font-normal text-base mt-1">{user?.roles.join(', ')}</h1>
                     </div>
                     <div className="font-bold text-lg h-1/">Teléfono
-                        <h1 className="font-normal text-base mt-1">{user.then((user)=>user.phone)}</h1>
+                        <h1 className="font-normal text-base mt-1">{user?.phone}</h1>
                     </div>
                     <div className="font-bold text-lg h-1/">Email
-                        <h1 className="font-normal text-base mt-1">{user.then((user)=>user.email)}</h1>
+                        <h1 className="font-normal text-base mt-1">{user?.email}</h1>
                     </div>
                 </div>
-                {user.then((user) => (
-                    <SellerList />
-                ))}
+                <SellerList />
             </div>
         </div>
     );
