@@ -3,7 +3,6 @@ import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { SellerItem } from "@/components/list-item/SellerItem"
 import { FeedPlusIcon } from "@primer/octicons-react"
 import { useMyProducts, useGetAllProducts } from "@/hooks/product/useProduct"
-import Link from "next/link"
 
 export default function SellerPage() {
 
@@ -13,9 +12,7 @@ export default function SellerPage() {
         <div className="flex flex-col items-center justify-center w-full h-full">
             <div className="flex items-center justify-center">
                 <label className="font-serif text-[100px] text-black font-light mr-5">Tus Productos</label>
-                <Link href="/product/create">
-                    <FeedPlusIcon className="text-[#A5B68D]" size={100}/>
-                </Link>
+                <FeedPlusIcon className="text-[#A5B68D]" size={100}/>
             </div>
             <CategoryBar/>
             <div className="

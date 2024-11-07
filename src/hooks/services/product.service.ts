@@ -94,12 +94,71 @@ export class ProductService{
                 .filter(f => f.length > 0)
                 .join('&');
 
-            const response = await this.axios.get(`/products?${queryString}`, {})
+            const pages = Cookies.get('pages');
+
+            const response = await this.axios.get(`/products?${queryString}&${pages?`offset=${pages}`:''}`, {})
             console.log(response)
             return response.data 
         } catch (error) {
             console.log(error)
             return null   
+        }
+    }
+
+    public async getSubscribedProducts(): Promise<Product[] | null> {
+        try {
+            const token = this.getAuthToken();
+            console.log(token);
+            const response = await this.axios.get('/products/psubscribed', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
+    public async isSubscribed(id: string): Promise<boolean> {
+        try {
+            const token = this.getAuthToken();
+            const response = await this.axios.get(`/products/isSubscribed/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return false   
+        }
+    }
+
+    public async subscribe(id: string): Promise<any> {
+        try {
+            const token = this.getAuthToken();
+            const response = await this.axios.post(`/products/subscribe`, {productId:id}, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log(response)
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
+    public async numPages(): Promise<number> {
+        try {
+            const response = await this.axios.get('/products/pages', {})
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return 0   
         }
     }
 

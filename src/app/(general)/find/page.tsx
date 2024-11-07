@@ -3,7 +3,8 @@ import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { FilterBar } from "@/components/filter-bar/FilterBar"
 import { FilteredList } from "@/components/list-item/FilteredList"
 import { ListItem } from "@/components/list-item/ListItem"
-import { useFilterProducts, useGetAllProducts } from "@/hooks/product/useProduct"
+import PageChanger from "@/components/pagination/pageChanger"
+import { useGetAllProducts } from "@/hooks/product/useProduct"
 
 export const metadata = {
     title: "Tienda",
@@ -32,6 +33,7 @@ export default function FindPage() {
                    <FilteredList/>
                 </div>
             </div>
+            <PageChanger/>
             
         </div>
     )
