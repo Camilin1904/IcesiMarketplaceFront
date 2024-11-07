@@ -34,8 +34,8 @@ export default function LoginPage(){
                 <label className="mt4 mb-4">Correo</label>
                 <input data-key="username" type="text" className="w-80 h-8 px-2 border border-solid border-white text-white rounded-xl bg-[#A5B68D] mb-4 focus:outline-none" 
                 value={username} onChange={(e)=>setUsername(e.target.value)}/>
-                <label data-key="password" className="mt4 mb-4">Contraseña</label>
-                <input type="text" className="w-80 h-8 px-2 border border-solid border-white text-white rounded-xl bg-[#A5B68D] mb-4 focus:outline-none" 
+                <label className="mt4 mb-4">Contraseña</label>
+                <input data-key="password" type="text" className="w-80 h-8 px-2 border border-solid border-white text-white rounded-xl bg-[#A5B68D] mb-4 focus:outline-none" 
                 value={password} onChange={(e)=>setPassword(e.target.value)}/>
                 <button data-key="submit" className="mt-4 p-2 bg-[#F5F1E6] text-black rounded-xl hover:bg-[#A5B68D] transition duration-150 ease-in-out hover:text-white hover:border-[#F5F1E6] w-28"
                 onClick={onSubmit}>
