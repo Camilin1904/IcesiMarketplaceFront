@@ -15,14 +15,18 @@ interface props{
 
 export function SubscribeButton({pId}: props){
     console.log(pId);
-    const [isSubscribed, setIsSubscribed] = useState(useIsSubscribed(pId));
-    console.log(isSubscribed);
+    const isSubscribedInitial = useIsSubscribed(pId);
+    const [isSubscribed, setIsSubscribed] = useState(isSubscribedInitial);
+    useEffect(() => {
+        setIsSubscribed(isSubscribedInitial);
+    }, [isSubscribedInitial]);
+
     const subscibe = () => {
         setIsSubscribed(!isSubscribed);
         useSubscribe(pId);
     }
     const [fill,setFill] = useState(<></>);
-    const isFill = useEffect(() => {
+    useEffect(() => {
         if(isSubscribed){
             setFill(<HeartFillIcon size={24} className="absolute transition-opacity duration-200 opacity-100 group-hover:opacity-75"/>)
         }

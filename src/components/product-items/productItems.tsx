@@ -44,8 +44,7 @@ export default function ProductItems({ id }: props) {
                         </div>
                         <div className="flex flex-col justify-center items-center">
                             <div className="flex w-4/5 h-48 m-8 justify-center
-                            overflow-scroll 
-                            overflow-x-hidden
+                            overflow-y-auto
                             [&::-webkit-scrollbar]:w-2
                             [&::-webkit-scrollbar-track]:rounded-2xl
                             [&::-webkit-scrollbar-track]:bg-gray-100
