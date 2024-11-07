@@ -59,7 +59,17 @@ export class ProductService{
         }
     }
 
-    public async findById(id: string): Promise<Product | null> {
+    public async myProducts(): Promise<Product[] | null> {
+        try {
+            const response = await this.axios.get('/products/myProducts')
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
+    public async findById(id: string): Promise<any | null> {
         try {
             const response = await this.axios.get('/products/'+id, {})
             return response.data 
@@ -92,4 +102,25 @@ export class ProductService{
             return null   
         }
     }
+
+    public async create(product: Product): Promise<Product | null> {
+        try {
+            const response = await this.axios.post('/products', product)
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
+    public async update(product: Product): Promise<Product | null> {
+        try {
+            const response = await this.axios.put('/products/'+product.id, product)
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
 }
