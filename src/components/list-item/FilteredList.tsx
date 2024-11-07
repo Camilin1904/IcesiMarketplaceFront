@@ -1,5 +1,5 @@
 "use client";
-import { useGetAllProducts } from "@/hooks/product/useProduct"
+import { useGetAllProducts } from "@/hooks/product/useGetAllProducts"
 import { useFilterProducts } from "@/hooks/product/useFilterProduct"
 import { ListItem } from "@/components/list-item/ListItem"
 import { useAppSelector } from "@/store";

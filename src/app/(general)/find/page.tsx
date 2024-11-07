@@ -4,7 +4,7 @@ import { FilterBar } from "@/components/filter-bar/FilterBar"
 import { FilteredList } from "@/components/list-item/FilteredList"
 import { ListItem } from "@/components/list-item/ListItem"
 import PageChanger from "@/components/pagination/pageChanger"
-import { useGetAllProducts } from "@/hooks/product/useProduct"
+import { useGetAllProducts } from "@/hooks/product/useGetAllProducts"
 
 export const metadata = {
     title: "Tienda",
@@ -19,7 +19,7 @@ export default function FindPage() {
         <div className="flex flex-col items-center justify-center w-full h-full">
             <FilterBar/>
             <div className="
-            flex flex-row items-center justify-center mt-16 w-3/4 h-[600px] bg-[#C1CFA1] rounded-2xl rounded-r-lg  
+            flex flex-row items-center justify-center mt-16 w-3/4 h-96 bg-[#C1CFA1] rounded-2xl rounded-r-lg  
             overflow-x-hidden
             overflow-y-scroll
             shadow-lg
@@ -30,7 +30,7 @@ export default function FindPage() {
             [&::-webkit-scrollbar-thumb]:bg-gray-300
             dark:[&::-webkit-scrollbar-track]:bg-[#C1CFA1]
             dark:[&::-webkit-scrollbar-thumb]:bg-[#A5B68D]">
-                <div className="grid grid-cols-3 gap-12 mt-32">
+                <div className="grid grid-cols-3 gap-12 mt-96">
                    <FilteredList/>
                 </div>
             </div>

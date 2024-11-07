@@ -10,14 +10,17 @@ import { SellerList } from "@/components/list-item/SellerList";
 
 
 export default function Profile(){
+    /*
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         const res = useProfile().getProfile();
         res.then((user) => setUser(user));
     }, []);
-
+    */
     
+    const user = useProfile();
+    const {logout} = useLogout();
 
     return(
         <div className="flex flex-col mt-10 items-center align-top h-screen">

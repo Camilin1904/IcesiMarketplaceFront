@@ -2,12 +2,12 @@
 import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { SellerItem } from "@/components/list-item/SellerItem"
 import { FeedPlusIcon } from "@primer/octicons-react"
-import { useMyProducts, useGetAllProducts } from "@/hooks/product/useProduct"
+import { useMyProducts } from "@/hooks/product/useProduct"
 import Link from 'next/link'
 
 export default function SellerPage() {
 
-    const products = useMyProducts()
+    const products = useMyProducts().products;
 
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">
@@ -30,7 +30,7 @@ export default function SellerPage() {
             dark:[&::-webkit-scrollbar-track]:bg-[#C1CFA1]
             dark:[&::-webkit-scrollbar-thumb]:bg-[#A5B68D]">
                 <div className="grid grid-cols-3 gap-12">{
-                        products.then(products=>products?.map(product=>{
+                        products?.map(product=>{
                             const image = product.image;
                             const name = product.name;
                             const cost = product.cost;
@@ -42,7 +42,7 @@ export default function SellerPage() {
                         }
                             
                         )
-                        )
+                        
                     }
                 </div>
             </div>

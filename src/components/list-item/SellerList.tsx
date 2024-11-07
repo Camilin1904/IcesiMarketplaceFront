@@ -19,17 +19,13 @@ export function SellerList(){
     const [showSellerItems, setShowSellerItems] = useState(false); 
 
     const subscribedItems = useSubscribedProducts().products;
+    console.log(subscribedItems);
 
-    const [myProducts, setMyProducts] = useState<Product[]>();
+    const [myProducts, setMyProducts] = useState<Product[] | null>();
 
     useEffect(() => {
         const res = useMyProducts();
-        res.then((products) => {
-            if (products) {
-                setMyProducts(products);
-                console.log(products);
-            }
-        });
+        setMyProducts(res.products);
     }, []);
 
 

@@ -1,3 +1,4 @@
+import { User } from '@/interface/user';
 import axios, { AxiosInstance } from 'axios'
 import Cookies from 'js-cookie';
 
@@ -67,6 +68,38 @@ export class AuthService{
     public async signUp(name: string, email: string, password: string): Promise<any> {
         try {
             const response = await this.axios.post('/auth/register', {"name":name, "email":email, "password":password})
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
+    public async becomeSeller(phone: string, location: string){
+        try {
+            const token = this.getAuthToken();
+            const response = await this.axios.post('/auth/seller', {phone,location}, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log(response);
+            return response.data 
+        }
+        catch (error) {
+            console.log(error)
+            return null
+        }
+    }
+
+    public async getAllUsers(): Promise<User[] | null> {
+        try {
+            const token = this.getAuthToken();
+            const response = await this.axios.get('/auth/users', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
             return response.data 
         } catch (error) {
             console.log(error)
