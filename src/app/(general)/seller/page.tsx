@@ -17,7 +17,6 @@ export default function SellerPage() {
                     <FeedPlusIcon className="text-[#A5B68D]" size={100}/>
                 </a>
             </div>
-            <CategoryBar/>
             <div className="
             flex flex-row items-center justify-center w-3/4 h-96 bg-[#C1CFA1] rounded-2xl rounded-r-lg  
             overflow-x-hidden
@@ -40,13 +39,10 @@ export default function SellerPage() {
                             return (
                                 <SellerItem key={product.id} {...all} />
                             )
-                        }
-                            
-                        )
-                        
+                        })
                     }
                 </div>
-            </div>
+        </div>
             
         </div>
     )

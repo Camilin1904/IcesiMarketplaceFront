@@ -3,12 +3,16 @@ import { useState, useEffect } from "react";
 import { useSubscribedProducts, useSubscribedProducts2 } from "@/hooks/auth/useCurrentUser";
 import { ListItem } from "./ListItem";
 import { Product } from "@/interface/Product";
+import { useMyProducts } from "@/hooks/product/useProduct";
+import { SellerItem } from "./SellerItem";
 
 interface Props {
     id?: string;
 }
 
 export function SellerList({ id }: Props) {
+    const myProducts = useMyProducts().products;
+    console.log(myProducts)
     const [showSellerItems, setShowSellerItems] = useState(false);
     const { products: subscribedProducts } = useSubscribedProducts();
     const { products: subscribedProducts2 } = useSubscribedProducts2(id || "");
@@ -21,9 +25,10 @@ export function SellerList({ id }: Props) {
                 onClick={() => setShowSellerItems(!showSellerItems)}
                 className="bg-[#C1CFA1] text-white py-2 px-4 rounded mt-4 shadow-lg"
             >
-                {showSellerItems ? "Productos Subscritos" : "Historial Subscripciones"}
+                {showSellerItems ? "Productos Subscritos" : "Mis productos"}
             </button>
-            <div className="grid grid-cols-1 w-full h-fit mt-10 overflow-y-scroll overflow-x-hidden gap-12 
+            <div className="grid grid-cols-1 w-full h-max-40 mt-10 
+            overflow-y-scroll overflow-x-hidden gap-12 
             [&::-webkit-scrollbar]:w-2
             [&::-webkit-scrollbar-track]:rounded-2xl
             [&::-webkit-scrollbar-track]:bg-gray-100
@@ -45,6 +50,14 @@ export function SellerList({ id }: Props) {
                     </>
                 ) : (
                     <>
+                        {myProducts?.map((item) => {
+                            const image = item.image;
+                            const name = item.name;
+                            const cost = item.cost;
+                            const id = item.id;
+                            const all = { id, name, cost, image };
+                            return <SellerItem key={id} {...all} />;
+                        })}
                     </>
                 )}
             </div>
