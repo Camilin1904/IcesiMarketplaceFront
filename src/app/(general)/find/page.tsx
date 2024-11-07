@@ -4,7 +4,7 @@ import { FilterBar } from "@/components/filter-bar/FilterBar"
 import { FilteredList } from "@/components/list-item/FilteredList"
 import { ListItem } from "@/components/list-item/ListItem"
 import PageChanger from "@/components/pagination/pageChanger"
-import { useGetAllProducts } from "@/hooks/product/useProduct"
+import { useGetAllProducts } from "@/hooks/product/useGetAllProducts"
 
 export const metadata = {
     title: "Tienda",
