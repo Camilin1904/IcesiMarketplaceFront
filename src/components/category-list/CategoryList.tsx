@@ -14,7 +14,7 @@ export  function CategoryList({id}:props){
             {
                  categories.then((categories)=>categories?.map((category: any)=> {
                     return(
-                        <div className="flex bg-white text-black rounded-2xl h-10 w-48 justify-center items-center mt-5">  
+                        <div key={category.id} className="flex bg-white text-black rounded-2xl h-10 w-48 justify-center items-center mt-5">  
                             {category.name}
                         </div>
                     )

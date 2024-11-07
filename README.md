@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Icesi Marketplace
 
-## Getting Started
+## Repositorio
 
-First, run the development server:
+El codigo se encuentra en el siguiente repositorio: https://github.com/Camilin1904/IcesiMarketplaceFront.git
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+El informe se encuentra en la carpeta docs de este mismo repositorio.
+
+## Ejecución
+
+Para ejecutar el proyecto es necesaro correr el comando
 ```
+    git clone https://github.com/Camilin1904/IcesiMarketplaceFront.git
+```
+sobre la carpeta en la cual se desea almacenar los archivos.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Luego es necesario correr el siguiente comando dentro de la carpeta generada :
+```
+    npm i
+```
+para instalar las dependencias de la aplicación en la instancia local.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Por ultimo, para ejecutar el proyecto se utiliza el comando:
+```
+    npm start
+```
+para iniciar la ejecución.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Si se está ejecutando en local, la applicación se encontrara en la siguiente url:
+http://localhost:3000/home
 
-## Learn More
+Por otro lado tambien está desplegada en:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+https://icesi-marketplace-front.vercel.app/home

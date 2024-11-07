@@ -1,4 +1,5 @@
 import { Product } from '@/interface/Product';
+import { User } from '@/interface/user';
 import axios, { AxiosInstance } from 'axios'
 import Cookies from 'js-cookie';
 
@@ -140,7 +141,6 @@ export class ProductService{
                     Authorization: `Bearer ${token}`
                 }
             })
-            console.log(response)
             return response.data 
         } catch (error) {
             console.log(error)
@@ -199,6 +199,21 @@ export class ProductService{
             const response = await this.axios.delete('/products/'+id)
             return response.data 
         } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
+    public async getSeller(id:string): Promise<User | null> {
+        try {
+            const response = await this.axios.get(`/products/seller/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${this.getAuthToken()}`
+                }
+            })
+            return response.data 
+        }
+        catch (error) {
             console.log(error)
             return null   
         }
