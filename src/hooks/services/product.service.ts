@@ -192,14 +192,4 @@ export class ProductService{
         }
     }
 
-    public async myProducts(): Promise<Product[] | null> {
-        try {
-            const response = await this.axios.get('/products/myProducts')
-            return response.data 
-        } catch (error) {
-            console.log(error)
-            return null   
-        }
-    }
-
 }

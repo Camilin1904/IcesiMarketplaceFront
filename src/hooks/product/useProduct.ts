@@ -91,39 +91,4 @@ export const useSubscribe = (id: string) =>{
     service.subscribe(id);
 }
 
-export const useCreateProduct = (product: any) => {
-    const createProduct = async() => {
-        const service = new ProductService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
-        await service.check();
-        // Ensure price is an integer
-        product.cost = parseInt(product.cost, 10);
-        const products = await service.create(product);
-        return products;
-    }
 
-    return createProduct();
-}
-
-export const useUpdateProduct = (product: any) => {
-    const updateProduct = async() => {
-        const service = new ProductService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
-        await service.check();
-        // Ensure price is an integer
-        product.cost = parseInt(product.cost, 10);
-        const products = await service.update(product);
-        return products;
-    }
-
-    return updateProduct();
-}
-
-export const useMyProducts = () =>{
-    const products = async() =>{
-        const service = new ProductService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
-        await service.check()
-        const products = await service.myProducts();
-        return await products;
-    }
-
-    return products();
-}

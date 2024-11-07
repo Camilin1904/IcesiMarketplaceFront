@@ -3,10 +3,13 @@ import { HomeIcon, PersonIcon, SearchIcon, PackageIcon } from "@primer/octicons-
 import Link from "next/link";
 import { ActiveLink2 } from "../active-link/ActiveLink";
 import { SellerItem } from "./SellerItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { get } from "http";
 import { useSubscribedProducts } from "@/hooks/auth/useCurrentUser";
+import { useMyProducts } from "@/hooks/product/useProduct";
 import { ListItem } from "./ListItem";
+import { use } from "chai";
+import { Product } from "@/interface/Product";
 
 
 export function SellerList(){
@@ -17,6 +20,18 @@ export function SellerList(){
 
     const subscribedItems = useSubscribedProducts().products;
 
+    const [myProducts, setMyProducts] = useState<Product[]>();
+
+    useEffect(() => {
+        const res = useMyProducts();
+        res.then((products) => {
+            if (products) {
+                setMyProducts(products);
+                console.log(products);
+            }
+        });
+    }, []);
+
 
     return(
         <div className="grid grid-cols-1 w-2/3 h-5/6 mt-10 ml-10 overflow-hidden">
@@ -24,7 +39,7 @@ export function SellerList(){
                     onClick={() => setShowSellerItems(!showSellerItems)}
                     className="bg-[#C1CFA1] text-white py-2 px-4 rounded mt-4 shadow-lg"
                 >
-                    {showSellerItems ? "Productos Subscritos" : "Historial Subscripciones"}
+                    {showSellerItems ? "Productos Subscritos" : "Tus Productos"}
             </button>
             <div className="grid grid-cols-1 w-full h-full mt-10 overflow-scroll overflow-x-hidden gap-12 
             [&::-webkit-scrollbar]:w-2
@@ -47,7 +62,14 @@ export function SellerList(){
                     </>
                 ) : (
                     <>
-
+                        { myProducts?.map((product) => {
+                            const image = product.image;
+                            const name = product.name;
+                            const cost = product.cost;
+                            const id = product.id;
+                            const all = {id, image, name, cost};
+                            return <SellerItem key={id} {...all} />;
+                        } ) }
                     </>
                 )}
             </div>
