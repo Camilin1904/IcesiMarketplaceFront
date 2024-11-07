@@ -51,7 +51,10 @@ export class ProductService{
 
     public async getAll(): Promise<Product[] | null> {
         try {
-            const response = await this.axios.get('/products', {})
+            const page = Cookies.get('page');
+            console.log(page)
+            const response = await this.axios.get(`/products${page?`?offset=${page}&`:''}`, {})
+            console.log(response.data);
             return response.data 
         } catch (error) {
             console.log(error)
@@ -94,9 +97,9 @@ export class ProductService{
                 .filter(f => f.length > 0)
                 .join('&');
 
-            const pages = Cookies.get('pages');
+            const pages = Cookies.get('page');
 
-            const response = await this.axios.get(`/products?${queryString}&${pages?`offset=${pages}`:''}`, {})
+            const response = await this.axios.get(`/products?${pages?`offset=${pages}&`:''}${queryString}`, {})
             console.log(response)
             return response.data 
         } catch (error) {
@@ -154,7 +157,7 @@ export class ProductService{
 
     public async numPages(): Promise<number> {
         try {
-            const response = await this.axios.get('/products/pages', {})
+            const response = await this.axios.get('/products/numpages', {})
             return response.data 
         } catch (error) {
             console.log(error)
@@ -192,14 +195,5 @@ export class ProductService{
         }
     }
 
-    public async myProducts(): Promise<Product[] | null> {
-        try {
-            const response = await this.axios.get('/products/myProducts')
-            return response.data 
-        } catch (error) {
-            console.log(error)
-            return null   
-        }
-    }
 
 }
