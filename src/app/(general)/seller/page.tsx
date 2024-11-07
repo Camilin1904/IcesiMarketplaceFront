@@ -1,9 +1,13 @@
-
+"use client"
 import { CategoryBar } from "@/components/category-bar/CategoryBar"
 import { SellerItem } from "@/components/list-item/SellerItem"
 import { FeedPlusIcon } from "@primer/octicons-react"
+import { useMyProducts, useGetAllProducts } from "@/hooks/product/useProduct"
 
 export default function SellerPage() {
+
+    const products = useMyProducts()
+
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">
             <div className="flex items-center justify-center">
@@ -22,24 +26,21 @@ export default function SellerPage() {
             [&::-webkit-scrollbar-thumb]:bg-gray-300
             dark:[&::-webkit-scrollbar-track]:bg-[#C1CFA1]
             dark:[&::-webkit-scrollbar-thumb]:bg-[#A5B68D]">
-                <div className="grid grid-cols-3 gap-12">
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    <SellerItem image="" name="Colitas cubanas" cost={12500}/>
-                    
+                <div className="grid grid-cols-3 gap-12">{
+                        products.then(products=>products?.map(product=>{
+                            const image = product.image;
+                            const name = product.name;
+                            const cost = product.cost;
+                            const id = product.id;  
+                            const all = {id, image, name, cost}
+                            return (
+                                <SellerItem key={product.id} {...all} />
+                            )
+                        }
+                            
+                        )
+                        )
+                    }
                 </div>
             </div>
             

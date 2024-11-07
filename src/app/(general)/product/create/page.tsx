@@ -1,19 +1,12 @@
 "use client"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { UploadButton } from "../../../../../utils/uploadthing";
-import { useGetAllCategories } from "../../../../../hooks/category/useGetAllCategories";
-import { useGetProductById, useUpdateProduct } from "../../../../../hooks/product/useProduct";
-import { useGetByProduct } from "@/hooks/category/useGetByProduct";
+import { UploadButton } from "../../../../utils/uploadthing";
+import { useGetAllCategories } from "../../../../hooks/category/useGetAllCategories";
+import { useCreateProduct } from "../../../../hooks/product/useProduct";
 import Cookies from 'js-cookie';
 
-interface Props {
-    params: Promise<{id:string}>;
-
-}
-
-export default function ProductDetail({params}:Props) {
-
+export default function ProductDetail() {
     const [image , setImage] = useState("https://via.placeholder.com/150");
     const [categories, setCategories] = useState<{ id: string, name: string }[]>([]);
     const router = useRouter();
@@ -36,28 +29,6 @@ export default function ProductDetail({params}:Props) {
     };
 
     useEffect(() => {
-        (params).then(params => {
-            const id = params.id;
-            const product = useGetProductById(id);
-            product.then(product => {
-                setUser(product.owner.name)
-                setProductName(product.name);
-                setPrice(product.cost.toString());
-                setDescription(product.description);
-                setImage(product.image);
-                const categories = useGetByProduct(id);
-                categories.then(categories => {
-                    if (categories && categories.length > 0) {
-                        setCategories([categories[0]]);
-                    }
-                });
-                if (product.inStock) {
-                    setDisponible(true);
-                } else {
-                    setAgotado(true);
-                }
-            });
-        } ); 
         const categories = useGetAllCategories();
         categories.then(categories => {
             setCategories(categories);
@@ -77,14 +48,15 @@ export default function ProductDetail({params}:Props) {
     }, []);
 
     const handleUploadComplete = (res: any) => {
-        useUpdateProduct({
-            "name": productName,
-            "cost": parseInt(price, 10), // Ensure price is an integer
-            "description": description,
-            "categories": [category],
-            "image": image,
-            "inStock": disponible,
-        })
+        useCreateProduct(
+            {
+                "name": productName,
+                "cost": parseInt(price, 10), // Ensure price is an integer
+                "description": description,
+                "categories": [category],
+                "image": image,
+            }
+        )
     };
 
     return (

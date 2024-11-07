@@ -51,8 +51,7 @@ export class ProductService{
 
     public async getAll(): Promise<Product[] | null> {
         try {
-            const pages = Cookies.get('pages');
-            const response = await this.axios.get(`/products?${pages?`offset=${pages}`:''}`, {})
+            const response = await this.axios.get('/products', {})
             return response.data 
         } catch (error) {
             console.log(error)
@@ -152,4 +151,25 @@ export class ProductService{
             return 0   
         }
     }
+
+    public async create(product: Product): Promise<Product | null> {
+        try {
+            const response = await this.axios.post('/products', product)
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
+    public async update(product: Product): Promise<Product | null> {
+        try {
+            const response = await this.axios.put('/products/'+product.id, product)
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
 }

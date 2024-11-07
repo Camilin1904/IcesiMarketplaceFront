@@ -24,11 +24,12 @@ export default function HomePage() {
             dark:[&::-webkit-scrollbar-thumb]:bg-[#A5B68D]">
                 <div className="grid grid-cols-3 gap-12">
                     {
-                        products.then(products => products?.map(product => {
+                        products.then(products=>products?.map(product=>{
+                            const image = product.image;
                             const name = product.name;
                             const cost = product.cost;
                             const id = product.id;  
-                            const all = {id, name, cost}
+                            const all = {id, image, name, cost}
                             return (
                                 <ListItem key={product.id} {...all} />
                             )

@@ -3,13 +3,15 @@ import Link from "next/link";
 import { ActiveLink2 } from "../active-link/ActiveLink";
 
 interface Props{
-    image?: string;
+    id: string;
+    image: string;
     name: string;
     cost: number;
 }
 
-export function SellerItem({image, name, cost}: Props){
+export function SellerItem({id, image, name, cost}: Props){
     var displayImage;
+    const dest = "/product/edit"+id;
     if(image){
         displayImage = image;
     }
@@ -22,7 +24,7 @@ export function SellerItem({image, name, cost}: Props){
             <div className="flex flex-col justify-center items-center m-5">
                 <h1 className="h-7">{name}</h1>
                 <p className="h-7">${cost} COP</p>
-                <button className="bg-[#E7CCCC] rounded-2xl w-28 h-7">Editar</button>
+                <Link href={dest} className=" flex flex-col items-center bg-[#E7CCCC] rounded-2xl w-28 h-7">Editar</Link>
             </div>
         </div>
     )

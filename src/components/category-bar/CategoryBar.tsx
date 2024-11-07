@@ -53,7 +53,7 @@ export function CategoryBar(){
                             categories?.map(item => {
                                 const props = {path: item.id, name: item.name}
                                 return (
-                                    <button value={item.id} onClick={()=>defineFilter(item.name)} className="flex justify-center align-center w-40 transition-all bg-[#EDE8DC] hover:bg-[#C1CFA1] p-2 m-2 mr-5 ml-5 text-black rounded-3xl hover:text-white">
+                                    <button key={item.id} value={item.id} onClick={()=>defineFilter(item.name)} className="flex justify-center align-center w-40 transition-all bg-[#EDE8DC] hover:bg-[#C1CFA1] p-2 m-2 mr-5 ml-5 text-black rounded-3xl hover:text-white">
                                         {item.name}
                                     </button>
                                 )
