@@ -69,10 +69,10 @@ export class CategoryService {
             throw error;
         }
     }
-/*
+
     public async createCategory(category: any) {
         try {
-            const response = await axios.post(this.baseUrl, category, this.getAuthHeaders());
+            const response = await this.axios.post("/categories", category);
             return response.data;
         } catch (error) {
             console.error('Error creating category', error);
@@ -82,7 +82,7 @@ export class CategoryService {
 
     public async updateCategory(id: string, category: any) {
         try {
-            const response = await axios.put(`${this.baseUrl}/${id}`, category, this.getAuthHeaders());
+            const response = await this.axios.patch(`/categories/${id}`, category);
             return response.data;
         } catch (error) {
             console.error(`Error updating category with id ${id}`, error);
@@ -92,14 +92,14 @@ export class CategoryService {
 
     public async deleteCategory(id: string) {
         try {
-            const response = await axios.delete(`${this.baseUrl}/${id}`, this.getAuthHeaders());
+            const response = await this.axios.delete(`/categories/${id}`);
             return response.data;
         } catch (error) {
             console.error(`Error deleting category with id ${id}`, error);
             throw error;
         }
     }
-        */
+        
     public async getCategoriesByProductId(productId: string) {
         try {
             const token = this.getAuthToken();

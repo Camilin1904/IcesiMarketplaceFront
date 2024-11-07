@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { log } from "console";
 import { remove } from "@/store/user/userSlice"
@@ -11,9 +11,12 @@ export default function LoginPage(){
     const router = useRouter();
     const {logout} = useLogout();
 
-    logout();
-    remove();
-    router.push("/login");
+    useEffect(() => {
+        logout();
+        remove();
+        router.push("/login");
+    }, [logout, router]);
+
     return (
         <div className="flex flex-col items-center justify-center w-full h-full text-black">
             Loggin out...

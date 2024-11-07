@@ -4,7 +4,6 @@ import { ListItem } from "./ListItem";
 
 export function HomeList() {
     const products = useGetAllProducts();
-    console.log(products);
     return(
         <div className="
             flex flex-row items-center justify-center mt-2 w-3/4 h-96 bg-[#C1CFA1] rounded-2xl rounded-r-lg  

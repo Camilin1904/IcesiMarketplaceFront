@@ -90,3 +90,5 @@ export const useSubscribe = (id: string) =>{
     const service = new ProductService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
     service.subscribe(id);
 }
+
+
