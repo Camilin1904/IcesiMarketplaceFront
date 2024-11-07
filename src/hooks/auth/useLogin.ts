@@ -14,7 +14,9 @@ export const useLogin = () =>{
             // Ensure the cookie is set correctly
             Cookies.set('currentUser', JSON.stringify(user), {expires: 1, sameSite: 'strict'});
             console.log(Cookies.get('currentUser'));
-            dispatch(initUser(user));
+            console.log(user.roles);
+            window.dispatchEvent(new Event('userLogin'));
+            dispatch(initUser(user.roles));
         }
         else {
             throw new Error('Invalid credentials');

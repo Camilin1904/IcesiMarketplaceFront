@@ -3,12 +3,16 @@ import { useRouter } from "next/navigation";
 import {useState} from "react";
 import { useLogin } from "@/hooks/auth/useLogin";
 import Link from "next/link";
+import { useProfile } from "@/hooks/auth/useProfile";
+import { useAppDispatch } from "@/store";
+import { initUser } from "@/store/user/userSlice";
 
 export default function LoginPage(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const router = useRouter();
     const {login} = useLogin();
+    const dispatch = useAppDispatch();
 
     const onSubmit = ()=>{
         if(!username||!password){
@@ -16,7 +20,9 @@ export default function LoginPage(){
         }
         else{
             const user = login(username, password)
-                .then(()=>router.push("/home"))
+                .then(()=>{
+                    router.push("/home")
+                })
                 .catch((e:Error) => {
                     setUsername("");
                     setPassword("");

@@ -8,14 +8,14 @@ import { remove } from "@/store/user/userSlice"
 export default function LoginPage(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    useEffect(() => {
-        const router = useRouter();
-        const {logout} = useLogout();
+    const router = useRouter();
+    const {logout} = useLogout();
 
+    useEffect(() => {
         logout();
         remove();
         router.push("/login");
-    }, []);
+    }, [logout, router]);
 
     return (
         <div className="flex flex-col items-center justify-center w-full h-full text-black">

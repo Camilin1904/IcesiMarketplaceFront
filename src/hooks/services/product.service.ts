@@ -41,9 +41,7 @@ export class ProductService{
     public async getAll(): Promise<Product[] | null> {
         try {
             const page = Cookies.get('page');
-            console.log(page)
             const response = await this.axios.get(`/products${page?`?offset=${page}&`:''}`, {})
-            console.log(response.data);
             return response.data 
         } catch (error) {
             console.log(error)
