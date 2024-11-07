@@ -1,4 +1,6 @@
+"use client"
 import { EyeIcon, TrashIcon } from "@primer/octicons-react";
+import { useRouter } from 'next/navigation';
 
 const users = [
     { name: 'Carlos Perez', type: 'comprador' },
@@ -14,9 +16,16 @@ const users = [
 ];
 
 export default function AdminPage() {
+    const router = useRouter();
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">
             <label className="font-serif text-[100px] text-black font-light">Administrador</label>
+            <button 
+                className="bg-[#E7CCCC] rounded-2xl w-48 h-10 text-black"
+                onClick={() => router.push('/categories')}
+            >
+                Categorías
+            </button>
             <div className="w-3/4 h-96 m-10 
                 overflow-x-hidden
                 rounded-2xl shadow-lg
