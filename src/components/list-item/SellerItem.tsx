@@ -11,7 +11,7 @@ interface Props{
 
 export function SellerItem({id, image, name, cost}: Props){
     var displayImage;
-    const dest = "/product/edit"+id;
+    const dest = "/product/edit/"+id;
     if(image){
         displayImage = image;
     }

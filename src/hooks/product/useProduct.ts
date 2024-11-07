@@ -74,3 +74,14 @@ export const useMyProducts = () =>{
 
     return products();
 }
+
+export const useDeleteProduct = (id: string) => {
+    const deleteProduct = async() => {
+        const service = new ProductService('https://fixed-bellanca-icesi-11a012a9.koyeb.app');
+        await service.check();
+        const products = await service.delete(id);
+        return products;
+    }
+
+    return deleteProduct();
+}

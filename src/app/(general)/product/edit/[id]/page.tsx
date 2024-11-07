@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { UploadButton } from "../../../../../utils/uploadthing";
 import { useGetAllCategories } from "../../../../../hooks/category/useGetAllCategories";
-import { useGetProductById, useUpdateProduct } from "../../../../../hooks/product/useProduct";
+import { useDeleteProduct, useGetProductById, useUpdateProduct } from "../../../../../hooks/product/useProduct";
 import { useGetByProduct } from "@/hooks/category/useGetByProduct";
 import Cookies from 'js-cookie';
+import { TrashIcon } from "@primer/octicons-react";
 
 interface Props {
     params: Promise<{id:string}>;
@@ -17,6 +18,7 @@ export default function ProductDetail({params}:Props) {
     const [image , setImage] = useState("https://via.placeholder.com/150");
     const [categories, setCategories] = useState<{ id: string, name: string }[]>([]);
     const router = useRouter();
+    const [id, setId] = useState("");
     const [user, setUser] = useState("");
     const [productName, setProductName] = useState("");
     const [price, setPrice] = useState("");
@@ -38,6 +40,7 @@ export default function ProductDetail({params}:Props) {
     useEffect(() => {
         (params).then(params => {
             const id = params.id;
+            setId(id);
             const product = useGetProductById(id);
             product.then(product => {
                 setUser(product.owner.name)
@@ -77,15 +80,27 @@ export default function ProductDetail({params}:Props) {
     }, []);
 
     const handleUploadComplete = (res: any) => {
-        useUpdateProduct({
-            "name": productName,
-            "cost": parseInt(price, 10), // Ensure price is an integer
-            "description": description,
-            "categories": [category],
-            "image": image,
-            "inStock": disponible,
-        })
+        if(!productName || !price || !description || !category || !image || !user) {  
+            alert("Por favor, rellena todos los campos");
+        }else{
+            useUpdateProduct({
+                "id": id,
+                "name": productName,
+                "cost": parseInt(price, 10), // Ensure price is an integer
+                "description": description,
+                "categories": [category],
+                "image": image,
+                "inStock": disponible,
+            })
+            router.push('/seller');
+        } 
+        
     };
+
+    const handleDelete = () => {
+        useDeleteProduct(id);
+        router.push('/seller');
+    }
 
     return (
         <div className="flex justify-center items-center">
@@ -105,7 +120,6 @@ export default function ProductDetail({params}:Props) {
                         // Do something with the response
                         console.log("Files: ", res);
                         setImage((res[0]).url);
-                        alert("Upload Completed");
                         }}
                         onUploadError={(error: Error) => {
                         // Do something with the error.
@@ -142,6 +156,9 @@ export default function ProductDetail({params}:Props) {
                     <div className="mt-14 ml-20">
                         <div className="flex mb-36">
                             <h3 className="mr-5 text-lg text-white">{user}</h3>
+                            <button onClick={()=>handleDelete()} className="flex flex-col w-10 items-center justify-center rounded-2xl">
+                                <TrashIcon size={24} className="text-[#c2535c]" />
+                            </button>
                         </div>
                         
                         <label className="text-xl text-white mb-5">Categorias</label>

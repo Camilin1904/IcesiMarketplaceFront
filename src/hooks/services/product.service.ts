@@ -115,7 +115,17 @@ export class ProductService{
 
     public async update(product: Product): Promise<Product | null> {
         try {
-            const response = await this.axios.put('/products/'+product.id, product)
+            const response = await this.axios.patch('/products/'+product.id, product)
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
+    public async delete(id: string): Promise<any | null> {
+        try {
+            const response = await this.axios.delete('/products/'+id)
             return response.data 
         } catch (error) {
             console.log(error)

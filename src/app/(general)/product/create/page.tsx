@@ -10,23 +10,11 @@ export default function ProductDetail() {
     const [image , setImage] = useState("https://via.placeholder.com/150");
     const [categories, setCategories] = useState<{ id: string, name: string }[]>([]);
     const router = useRouter();
-    const [user, setUser] = useState("");
+    const [user, setUser] = useState();
     const [productName, setProductName] = useState("");
     const [price, setPrice] = useState("");
-    const [agotado, setAgotado] = useState(false);
-    const [disponible, setDisponible] = useState(false);
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
-
-    const handleCheckboxChange = (checkbox: string) => {
-        if (checkbox === "agotado") {
-            setAgotado(true);
-            setDisponible(false);
-        } else {
-            setAgotado(false);
-            setDisponible(true);
-        }
-    };
 
     useEffect(() => {
         const categories = useGetAllCategories();
@@ -48,15 +36,20 @@ export default function ProductDetail() {
     }, []);
 
     const handleUploadComplete = (res: any) => {
-        useCreateProduct(
-            {
-                "name": productName,
-                "cost": parseInt(price, 10), // Ensure price is an integer
-                "description": description,
-                "categories": [category],
-                "image": image,
-            }
-        )
+        if(!productName || !price || !description || !category || !image || !user) {  
+            alert("Por favor, rellena todos los campos");
+        }else{
+            useCreateProduct(
+                {
+                    "name": productName,
+                    "cost": parseInt(price, 10), // Ensure price is an integer
+                    "description": description,
+                    "categories": [category],
+                    "image": image,
+                }
+            )
+            router.push('/home');
+        } 
     };
 
     return (
@@ -77,23 +70,13 @@ export default function ProductDetail() {
                         // Do something with the response
                         console.log("Files: ", res);
                         setImage((res[0]).url);
-                        alert("Upload Completed");
                         }}
                         onUploadError={(error: Error) => {
                         // Do something with the error.
                         alert(`ERROR! ${error.message}`);
                         }}
                     />
-                        <div>
-                            <div className="flex items-center mb-4">
-                                <input id="agotado" type="checkbox" checked={agotado} onChange={() => handleCheckboxChange("agotado")} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                <label htmlFor="agotado" className="ms-2 text-sm font-medium text-white">Agotado</label>
-                            </div>
-                            <div className="flex items-center mb-4">
-                                <input id="disponible" type="checkbox" checked={disponible} onChange={() => handleCheckboxChange("disponible")} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                <label htmlFor="disponible" className="ms-2 text-sm font-medium text-white">Disponible</label>
-                            </div>
-                        </div>
+
                     </div>
                     <div className="flex flex-col ml-20 mt-12">
                         <input 
