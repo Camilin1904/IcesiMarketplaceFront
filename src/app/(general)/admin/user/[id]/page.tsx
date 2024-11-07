@@ -6,12 +6,20 @@ import { useLogout } from "@/hooks/auth/useLogout";
 import { User } from "@/interface/user";
 import { useProfile } from "@/hooks/auth/useProfile";
 import { SellerList } from "@/components/list-item/SellerList";
-import { PreUserInfo } from "@/components/user-info/PreUserInfo";
+import { UserInfo } from "@/components/user-info/UserInfo";
 
+interface Props {
+    params: Promise<{id:string}>;
+}   
 
-export default function Profile(){
+export default async function UserPage({params}:Props){
+
+    const id = (await params).id;
 
     return(
-        <PreUserInfo/>
-    );
+        <UserInfo id={id}/>
+    )
+
+
+   
 }

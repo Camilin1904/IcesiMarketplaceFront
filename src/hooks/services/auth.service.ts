@@ -106,4 +106,37 @@ export class AuthService{
             return null   
         }
     }
+
+    public async getUser(id: string): Promise<User | null> {
+        try {
+            const token = this.getAuthToken();
+            const response = await this.axios.get(`/auth/info/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
+    public async deleteUser(id:string){
+        try {
+            const token = this.getAuthToken();
+            const response = await this.axios.delete(`/auth/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log(response);
+            return response.data 
+        }
+        catch (error) {
+            console.log(error)
+            return null
+        }
+    }
+    
 }

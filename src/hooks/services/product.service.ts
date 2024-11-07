@@ -118,6 +118,22 @@ export class ProductService{
         }
     }
 
+    public async getSubscribedProducts2(id:string): Promise<Product[] | null> {
+        try {
+            const token = this.getAuthToken();
+            console.log(token);
+            const response = await this.axios.get(`/products/psubscribed/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            return response.data 
+        } catch (error) {
+            console.log(error)
+            return null   
+        }
+    }
+
     public async isSubscribed(id: string): Promise<boolean> {
         try {
             const token = this.getAuthToken();

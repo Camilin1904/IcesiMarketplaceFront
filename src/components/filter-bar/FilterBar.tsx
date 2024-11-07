@@ -31,7 +31,7 @@ export function FilterBar() {
     const [nameFilters, setNameFilters] = useState(() => getInitialFilterValue('name'));
     const [costHigh, setCostHigh] = useState(() => getInitialFilterValue('costHigh'));
     const [costLow, setCostLow] = useState(() => getInitialFilterValue('costLow'));
-    const [inStock, setinStock] = useState(() => getInitialFilterValue('inStock') === 'true');
+    const [inStock, setinStock] = useState(() => getInitialFilterValue('inStock') || true);
     var fullFilter = '';
 
     const reapplyFilter = () => {
@@ -50,7 +50,7 @@ export function FilterBar() {
     }
 
     return (
-        <nav className="flex bg-[#A5B68D] p-2 m-2 rounded-xl text-black w-3/4 justify-center align-center shadow-lg overflow-x-scroll">
+        <nav className="flex bg-[#A5B68D] p-2 m-2 rounded-xl text-black w-fit justify-center align-center shadow-lg ">
             <div className="h-15 flex items-center space-x-4">
                 <div className="flex flex-1"></div>
                 <div className="flex flex-row space-x-4">

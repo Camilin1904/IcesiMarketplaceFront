@@ -16,6 +16,7 @@ interface props{
 export function SubscribeButton({pId}: props){
     console.log(pId);
     const [isSubscribed, setIsSubscribed] = useState(useIsSubscribed(pId));
+    console.log(isSubscribed);
     const subscibe = () => {
         setIsSubscribed(!isSubscribed);
         useSubscribe(pId);

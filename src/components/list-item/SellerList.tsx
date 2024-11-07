@@ -1,33 +1,29 @@
 "use client";
-import { HomeIcon, PersonIcon, SearchIcon, PackageIcon } from "@primer/octicons-react";
-import Link from "next/link";
-import { ActiveLink2 } from "../active-link/ActiveLink";
-import { SellerItem } from "./SellerItem";
-import { useState } from "react";
-import { get } from "http";
-import { useSubscribedProducts } from "@/hooks/auth/useCurrentUser";
+import { useState, useEffect } from "react";
+import { useSubscribedProducts, useSubscribedProducts2 } from "@/hooks/auth/useCurrentUser";
 import { ListItem } from "./ListItem";
+import { Product } from "@/interface/Product";
 
+interface Props {
+    id?: string;
+}
 
-export function SellerList(){
+export function SellerList({ id }: Props) {
+    const [showSellerItems, setShowSellerItems] = useState(false);
+    const { products: subscribedProducts } = useSubscribedProducts();
+    const { products: subscribedProducts2 } = useSubscribedProducts2(id || "");
 
+    const subscribedItems = id ? subscribedProducts2 : subscribedProducts;
 
-
-    const [showSellerItems, setShowSellerItems] = useState(false); 
-
-    const subscribedItems = useSubscribedProducts().products;
-    console.log(subscribedItems);
-
-
-    return(
+    return (
         <div className="grid grid-cols-1 w-2/3 h-5/6 mt-10 ml-10 overflow-hidden">
             <button
-                    onClick={() => setShowSellerItems(!showSellerItems)}
-                    className="bg-[#C1CFA1] text-white py-2 px-4 rounded mt-4 shadow-lg"
-                >
-                    {showSellerItems ? "Productos Subscritos" : "Historial Subscripciones"}
+                onClick={() => setShowSellerItems(!showSellerItems)}
+                className="bg-[#C1CFA1] text-white py-2 px-4 rounded mt-4 shadow-lg"
+            >
+                {showSellerItems ? "Productos Subscritos" : "Historial Subscripciones"}
             </button>
-            <div className="grid grid-cols-1 w-full h-full mt-10 overflow-scroll overflow-x-hidden gap-12 
+            <div className="grid grid-cols-1 w-full h-fit mt-10 overflow-y-scroll overflow-x-hidden gap-12 
             [&::-webkit-scrollbar]:w-2
             [&::-webkit-scrollbar-track]:rounded-2xl
             [&::-webkit-scrollbar-track]:bg-gray-100
@@ -39,21 +35,21 @@ export function SellerList(){
                 {showSellerItems ? (
                     <>
                         {subscribedItems?.map((item) => {
+                            const image = item.image;
                             const name = item.name;
                             const cost = item.cost;
                             const id = item.id;
-                            const all = {id, name, cost};
+                            const all = { id, name, cost, image };
                             return <ListItem key={id} {...all} />;
                         })}
                     </>
                 ) : (
                     <>
-
                     </>
                 )}
             </div>
         </div>
-    )
+    );
 }
 
 
