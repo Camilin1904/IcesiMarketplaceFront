@@ -6,6 +6,8 @@ import { useGetAllCategories } from "@/hooks/category/useGetAllCategories";
 import { CategoryList } from "@/components/category-list/CategoryList";
 import { SubscribeButton } from "@/components/subscibe-button/SubscribeButton";
 import { CommentDiscussionIcon } from "@primer/octicons-react";
+import { useGetOwner } from "@/hooks/product/useGetOwner";
+import { useState } from "react";
 
 interface props {
     id: string;
@@ -13,7 +15,7 @@ interface props {
 
 export default function ProductItems({ id }: props) {
     const product = useGetProductById(id);
-
+    const [owner,setOwner] = useState(useGetOwner(id));
 
     return (
         <>
@@ -33,7 +35,7 @@ export default function ProductItems({ id }: props) {
                             </div>
                             <div className="mt-14 ml-20">
                                 <div className="flex mb-36">
-                                    <h3 className="mr-5 text-lg">Placeholder name</h3>
+                                    <h3 className="mr-5 text-lg">{owner?.name}</h3>
                                     <div className="flex flex-col bg-[#F5F1E6] w-10 items-center justify-center rounded-2xl">
                                         <CommentDiscussionIcon size={24} className="text-[#A5B68D]" />
                                     </div>
